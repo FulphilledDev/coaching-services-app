@@ -10,6 +10,7 @@ import {
 } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { toast } from 'react-toastify'
+import Spinner from '../components/Spinner'
 
 function Category() {
     const [ coachingServices, setCoachingServices ] = useState(null)
@@ -37,21 +38,24 @@ function Category() {
                 const categoryServices = []
 
                 querySnap.forEach((doc) => {
+                    // This says we successfully have the data...
+                    // console.log(doc.data())
                     return categoryServices.push({
                         id: doc.id,
                         data: doc.data()
                     })
                 })
 
-                setCoachingServices(coachingServices)
+                // We are setting Coaching Services to specific categoryName services in a new array of category Services that will be displayed on the specific category page
+                setCoachingServices(categoryServices)
                 setLoading(false)
             } catch (error) {
-                toast.error('Could not fetch coaching services')
+                toast.error('Could not get coaching services')
             }
         }
 
         fetchServices()
-    }, [coachingServices, params.categoryName])
+    }, [])
 
 //  Modify classNames here and in CSS
   return (
@@ -63,7 +67,9 @@ function Category() {
             </p>
         </header>
 
-        {coachingServices && coachingServices.length > 0 ? (
+        { loading ? (
+            <Spinner />
+        ) : coachingServices && coachingServices.length > 0 ? (
             <>
             </>
             ) : ( 
