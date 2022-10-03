@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase.config'
@@ -47,8 +48,7 @@ function SignUp() {
 
       navigate('/')
     } catch (error) {
-      // toast.error('Whoops! Something Went Wrong.')
-      console.log(error)
+      toast.error('Whoops! Something Went Wrong.')
     }
   }
 

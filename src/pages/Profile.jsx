@@ -16,7 +16,7 @@ function Profile() {
   }, [])
 
   return (
-    <h1>{name}</h1>
+    auth.currentUser ? <h1>{auth.currentUser.displayName}</h1> : 'Not Logged In'
   )
 }
 
