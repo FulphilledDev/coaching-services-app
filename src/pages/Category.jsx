@@ -9,6 +9,7 @@ import {
     limit 
 } from 'firebase/firestore'
 import { db } from '../firebase.config'
+import { toast } from 'react-toastify'
 
 function Category() {
     const [ coachingServices, setCoachingServices ] = useState(null)
@@ -25,7 +26,7 @@ function Category() {
                 // Create a query
                 const q = query(
                     servicesRef, 
-                    where('type', '==', params.categoryName), 
+                    where('category', '==', params.categoryName), // There is no "type", instead "category"
                     orderBy('timestamp', 'desc'), 
                     limit(5)
                 )
@@ -36,22 +37,21 @@ function Category() {
                 const categoryServices = []
 
                 querySnap.forEach((doc) => {
-                    console.log(doc.data())
-                    // return categoryServices.push({
-                    //     id: doc.id,
-                    //     data: doc.data()
-                    // })
+                    return categoryServices.push({
+                        id: doc.id,
+                        data: doc.data()
+                    })
                 })
 
-                // setCoachingServices(services)
-                // setLoading(false)
+                setCoachingServices(coachingServices)
+                setLoading(false)
             } catch (error) {
-                // toast.error('Could not fetch coaching services')
+                toast.error('Could not fetch coaching services')
             }
         }
 
         fetchServices()
-    },)
+    }, [coachingServices, params.categoryName])
 
 //  Modify classNames here and in CSS
   return (

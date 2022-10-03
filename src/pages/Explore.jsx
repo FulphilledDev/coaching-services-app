@@ -12,7 +12,7 @@ function Explore() {
 
         <main>
           {/* Slider */}
-          
+
           <p className="exploreCategoryHeading">Categories</p>
           <div className="exploreCategories">
             <Link to='/category/life-performance'>
@@ -21,7 +21,7 @@ function Explore() {
                 alt="life-performance" 
                 className='exploreCategoryImg' 
               />
-              <p className="exploreCategoryName">Life Performance</p>
+              <p className="exploreCategoryName">Life-Performance</p>
             </Link>
             <Link to='/category/nutrition'>
               <img 
@@ -37,7 +37,7 @@ function Explore() {
                 alt="mental-performance" 
                 className='exploreCategoryImg' 
               />
-              <p className="exploreCategoryName">Mental Performance</p>
+              <p className="exploreCategoryName">Mental-Performance</p>
             </Link>
           </div>
         </main>
