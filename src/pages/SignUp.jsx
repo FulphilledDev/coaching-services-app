@@ -5,6 +5,7 @@ import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
+import OAuth from '../components/OAuth'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 // (After project finish): Add Phone Input prop for sign-up and add to formData
 // import 'react-phone-number-input/style.css'
@@ -124,7 +125,7 @@ function SignUp() {
             </div>
         </form> 
 
-        {/* <OAuth /> */}
+        <OAuth />
 
         <Link 
           to='/sign-in'
