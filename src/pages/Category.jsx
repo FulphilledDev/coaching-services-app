@@ -11,6 +11,7 @@ import {
 import { db } from '../firebase.config'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
+import ServiceItem from '../components/ServiceItem'
 
 function Category() {
     const [ coachingServices, setCoachingServices ] = useState(null)
@@ -55,7 +56,7 @@ function Category() {
         }
 
         fetchServices()
-    }, [])
+    }, [params.categoryName])
 
 //  Modify classNames here and in CSS
   return (
@@ -71,6 +72,20 @@ function Category() {
             <Spinner />
         ) : coachingServices && coachingServices.length > 0 ? (
             <>
+            <main>
+                <ul className="categoryListings">
+                    {coachingServices.map((service) => (
+                        <ServiceItem 
+                            service={service.data} 
+                            id={service.id}
+                            key={service.id} 
+                        />
+                    ))}
+                </ul>
+            </main>
+
+            <br />
+            <br />
             </>
             ) : ( 
             <p>No Services for {params.categoryName}</p>
