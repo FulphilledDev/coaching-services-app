@@ -395,6 +395,7 @@ button {
 
 .exploreCategories {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
@@ -403,17 +404,17 @@ button {
 }
 
 .exploreCategoryImg {
-  min-height: 115px;
+  min-height: 185px;
   height: 15vw;
   width: 100%;
   border-radius: 1.5rem;
-  object-fit: cover;
+  object-fit: fill;
   margin: 0 auto;
 }
 
 .exploreCategoryName {
   font-weight: 500;
-  text-align: left;
+  text-align: center;
 }
 
 .category {
