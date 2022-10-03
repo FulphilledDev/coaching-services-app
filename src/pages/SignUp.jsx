@@ -15,10 +15,9 @@ function SignUp() {
   const [ formData, setFormData ] = useState({ 
     name: '',
     email: '',
-    phone: '',
     password: '',
   })
-  const { name, email, phone, password } = formData
+  const { name, email, password } = formData
 
   const navigate = useNavigate()
 
@@ -36,7 +35,7 @@ function SignUp() {
     try {
       // Register a new user
       const auth = getAuth()
-      const userCredential = await createUserWithEmailAndPassword(auth, email, phone, password)
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
       const user = userCredential.user
 
       updateProfile(auth.currentUser, {
@@ -83,13 +82,13 @@ function SignUp() {
               value={email} 
               onChange={onChange} 
           />
-          <input  
+          {/* <input  
               className="phoneInput" 
               placeholder="Phone Number" 
               id="phone" 
               value={phone} 
               onChange={onChange} 
-          />
+          /> */}
 
           <div className="passwordInputDiv">
             <input 
