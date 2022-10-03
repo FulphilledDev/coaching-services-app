@@ -486,13 +486,14 @@ button {
 
 .categoryListingInfoDiv {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   max-width: 275px;
 }
 
 .categoryListingInfoText {
   font-weight: 500;
   font-size: 0.7rem;
+  margin-left: 10px;
 }
 
 .loadMore {
