@@ -6,15 +6,19 @@ import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
+// (After project finish): Add Phone Input prop for sign-up and add to formData
+// import 'react-phone-number-input/style.css'
+// import PhoneInput from 'react-phone-number-input'
 
 function SignUp() {
   const [ showPassword, setShowPassword ] = useState(false)
   const [ formData, setFormData ] = useState({ 
     name: '',
-    email: '', 
-    password: ''
+    email: '',
+    phone: '',
+    password: '',
   })
-  const { name, email, password } = formData
+  const { name, email, phone, password } = formData
 
   const navigate = useNavigate()
 
@@ -32,7 +36,7 @@ function SignUp() {
     try {
       // Register a new user
       const auth = getAuth()
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      const userCredential = await createUserWithEmailAndPassword(auth, email, phone, password)
       const user = userCredential.user
 
       updateProfile(auth.currentUser, {
@@ -77,6 +81,13 @@ function SignUp() {
               placeholder="Email" 
               id="email" 
               value={email} 
+              onChange={onChange} 
+          />
+          <input  
+              className="phoneInput" 
+              placeholder="Phone Number" 
+              id="phone" 
+              value={phone} 
               onChange={onChange} 
           />
 
