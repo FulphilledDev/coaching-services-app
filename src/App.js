@@ -9,6 +9,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import ForgotPassword from './pages/ForgotPassword';
 import Profile from './pages/Profile';
+import CreateService from './pages/CreateService'
 
 
 
@@ -25,9 +26,9 @@ function App() {
           <Route path='/sign-in' element={<SignIn />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
-          {/* <Route path='/create-listing' element={<PrivateRoute />}>
-            <Route path='/create-listing' element={<CreateListing />} />
-          </Route> */}
+          {/* <Route path='/create-listing' element={<PrivateRoute />}> */}
+            <Route path='/create-service' element={<CreateService />} />
+          {/* </Route> */}
         </Routes>
         <Navbar />
       </Router>
