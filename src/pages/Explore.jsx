@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import Slider from '../components/Slider'
 import goForIt from '../assets/jpg/goForIt.jpg'
 import inLifting from '../assets/jpg/inLifting.jpg'
 import yesWeCan from '../assets/jpg/yesWeCan.jpg'
@@ -11,7 +12,7 @@ function Explore() {
       </header>
 
         <main>
-          {/* Slider */}
+          <Slider />
 
           <p className="exploreCategoryHeading">Categories</p>
           <div className="exploreCategories">
