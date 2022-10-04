@@ -1,11 +1,17 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+// Swiper is grabbing service object but not displaying images...
+// Also getting Swiper destroyed: true in console
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
 import { getDoc, doc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
 import Spinner from '../components/Spinner'
 import shareIcon from '../assets/svg/shareIcon.svg'
+SwiperCore.use([ Navigation, Pagination, Scrollbar, A11y])
 
 function Service() {
     const [service, setService] = useState(null)
@@ -37,6 +43,24 @@ function Service() {
 
     return (
         <>
+        <Swiper
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            onSwiper={(swiper) => console.log(swiper)}
+            onSlideChange={() => console.log('slide change')}
+        >
+            {service.imgUrls.map((url, index) => (
+                <SwiperSlide key={index}>
+                    <div 
+                        style={{ background: `url(${service.imgUrls[index]}) center no-repeat`,
+                        backgroundSize: 'cover'}} 
+                        className="swiperSlideDiv"></div>
+                </SwiperSlide>
+            ))}
+        </Swiper>
+        
         <div
             className='shareIconDiv'
             onClick={() => {
