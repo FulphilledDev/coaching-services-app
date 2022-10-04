@@ -28,10 +28,74 @@ function Service() {
         }
 
         fetchService()
-  }, [navigate, params.serviceId])
+    }, [navigate, params.serviceId])
+
+    if(loading) {
+        return <Spinner />
+    }
 
     return (
-        <div>Service</div>
+        <>
+        <div
+            className='shareIconDiv'
+            onClick={() => {
+                navigator.clipboard.writeText(window.location.href)
+                setShareLinkCopied(true)
+                setTimeout(() => {
+                    setShareLinkCopied(false)
+                }, 2000)
+            }}
+        >
+        <img src={shareIcon} alt='' />
+        </div>
+
+        {shareLinkCopied && <p className='linkCopied'>Link Copied!</p>}
+
+        <div className='listingDetails'>
+        <p className='listingName'>
+            {service.name} - $
+            {service.yearly
+                ? service.yearlyPrice
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                : service.subscriptionPrice
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            <span> / Month</span>
+        </p>
+        <p className='listingLocation'>{service.businessLocation}</p>
+        <p className='listingType'>
+          {service.category}
+        </p>
+        {service.yearly && (
+          <p className='discountPrice'>
+            ${service.subscriptionPrice - service.yearlyPrice} discount
+          </p>
+        )}
+        <ul className='listingDetailsList'>
+            <li>
+                {service.minCommit > 1
+                    ? `${service.minCommit} Month Minimum Commitment`
+                    : '1 Month Commitment'}
+            </li>
+            <li>{service.inPersonCoaching && 'In Person Coaching Available'}</li>
+            <li>{service.onlineCoaching && 'Online Coaching Available'}</li>
+        </ul>
+
+        <p className='listingLocationTitle'>Business Location</p>
+
+        {/* MAP */}
+
+        {auth.currentUser?.uid !== service.userRef && (
+            <Link
+                to={`/contact/${service.userRef}?serviceName=${service.name}`}
+                className='primaryButton'
+            >
+                Contact Coach
+            </Link>
+        )}
+        </div>
+        </>  
     )
 }
 
