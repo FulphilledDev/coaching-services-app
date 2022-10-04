@@ -6,6 +6,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from 'firebase/storage'
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -18,21 +19,21 @@ function CreateService() {
     const [ loading, setLoading ] = useState(false)
 
     const [ formData, setFormData ] = useState({
-        // Make category a dropdown menu
-        name: "",
-        category: "mental-performance",
-        inPersonCoaching: false,
-        onlineCoaching: false,
-        subscription: false,
-        subscriptionPrice: 0,
-        minCommit: 1,
-        yearly: false,
-        yearlyPrice: 0,
-        avgRating: 3.5,
-        businessLocation: "",
-		latitude: 0,
-		longitude: 0,
-        images: {},
+      // Make category a dropdown menu
+      name: "",
+      category: "mental-performance",
+      inPersonCoaching: false,
+      onlineCoaching: false,
+      subscription: false,
+      subscriptionPrice: 0,
+      minCommit: 1,
+      yearly: false,
+      yearlyPrice: 0,
+      avgRating: 3.5,
+      businessLocation: "",
+		  latitude: 0,
+		  longitude: 0,
+      images: {},
     })
 
     const {
@@ -117,7 +118,6 @@ function CreateService() {
       } else {
         geolocation.lat = latitude
         geolocation.lng = longitude
-        location = businessLocation
       }
 
       // Store image in firebase
@@ -170,9 +170,24 @@ function CreateService() {
         return
       })
 
-      console.log(imgUrls)
+      const formDataCopy = {
+      ...formData,
+      imgUrls,
+      geolocation,
+      timestamp: serverTimestamp(),
+      }
 
+      formDataCopy.location = businessLocation
+      delete formDataCopy.images
+      delete formDataCopy.businessLocation
+      !formDataCopy.yearly && delete formDataCopy.yearlyPrice
+
+      const docRef = await addDoc(collection(db, 'coachingServices'), formDataCopy)
       setLoading(false)
+      toast.success('Listing saved')
+      navigate(`/category/${formDataCopy.category}/${docRef.id}`)
+
+      // setLoading(false)
     }
 
     const onMutate = (e) => {
