@@ -9,9 +9,10 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import ForgotPassword from './pages/ForgotPassword';
 import Profile from './pages/Profile';
-import CreateService from './pages/CreateService'
+import CreateService from './pages/CreateService';
+import EditService from './pages/EditService';
 import Service from './pages/Service';
-import Contact from './pages/Contact'
+import Contact from './pages/Contact';
 
 
 
@@ -30,6 +31,9 @@ function App() {
           <Route path='/forgot-password' element={<ForgotPassword />} />
           {/* <Route path='/create-service' element={<PrivateRoute />}> */}
             <Route path='/create-service' element={<CreateService />} />
+          {/* </Route> */}
+          {/* <Route path='/edit-service/:serviceId' element={<PrivateRoute />}> */}
+            <Route path='/edit-service/:serviceId' element={<EditService />} />
           {/* </Route> */}
           <Route path='/category/:categoryName/:serviceId' element={<Service />} />
           <Route path='/contact/:coachId' element={<Contact />} />

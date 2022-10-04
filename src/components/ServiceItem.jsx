@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
 import { ReactComponent as DeleteIcon } from '../assets/svg/deleteIcon.svg'
+import { ReactComponent as EditIcon } from '../assets/svg/editIcon.svg'
 // Add other icons: 
 import starIcon from '../assets/svg/starIcon.svg'
 import starHalfIcon from '../assets/svg/starHalfIcon.svg'
 import starFillIcon from '../assets/svg/starFillIcon.svg'
 
-function ServiceItem({ service, id, onDelete }) {
+function ServiceItem({ service, id, onDelete, onEdit }) {
   return (
     <li className='categoryListing'>
       <Link to={`/category/${service.category}/${id}`} className='categoryListingLink'>
@@ -53,6 +54,8 @@ function ServiceItem({ service, id, onDelete }) {
                 onClick={() => onDelete(service.id, service.name)}
             />
         )}
+
+        {onEdit && <EditIcon className='editIcon' onClick={() => onEdit(id)} />}
     </li>
   )
 }
