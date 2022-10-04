@@ -10,6 +10,7 @@ import SignUp from './pages/SignUp';
 import ForgotPassword from './pages/ForgotPassword';
 import Profile from './pages/Profile';
 import CreateService from './pages/CreateService'
+import Service from './pages/Service';
 
 
 
@@ -29,6 +30,7 @@ function App() {
           {/* <Route path='/create-listing' element={<PrivateRoute />}> */}
             <Route path='/create-service' element={<CreateService />} />
           {/* </Route> */}
+          <Route path='/category/:categoryName/:serviceId' element={<Service />} />
         </Routes>
         <Navbar />
       </Router>
