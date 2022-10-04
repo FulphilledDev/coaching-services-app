@@ -6,7 +6,8 @@ import {
     query, 
     where, 
     orderBy, 
-    limit 
+    limit , 
+    startAfter
 } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { toast } from 'react-toastify'
@@ -16,6 +17,7 @@ import ServiceItem from '../components/ServiceItem'
 function Category() {
     const [ coachingServices, setCoachingServices ] = useState(null)
     const [ loading, setLoading ] = useState(true)
+    const [ lastFetchedService, setLastFetchedService ] = useState(null)
 
     const params = useParams()
 
@@ -35,6 +37,9 @@ function Category() {
 
                 // Execute a query
                 const querySnap = await getDocs(q)
+
+                const lastVisible = querySnap.docs[querySnap.docs.length - 1]
+                setLastFetchedService(lastVisible)
 
                 const categoryServices = []
 
@@ -57,6 +62,43 @@ function Category() {
 
         fetchServices()
     }, [params.categoryName])
+
+    // Pagination / Load More
+    const onFetchMoreServices = async () => {
+        try {
+            // Get reference
+            const servicesRef = collection(db, 'coachingServices')
+
+            // Create a query
+            const q = query(
+                servicesRef,
+                where('category', '==', params.categoryName),
+                orderBy('timestamp', 'desc'),
+                startAfter(lastFetchedService),
+                limit(10)
+            )
+
+            // Execute query
+            const querySnap = await getDocs(q)
+
+            const lastVisible = querySnap.docs[querySnap.docs.length - 1]
+            setLastFetchedService(lastVisible)
+
+            const services = []
+
+            querySnap.forEach((doc) => {
+                return services.push({
+                    id: doc.id,
+                    data: doc.data(),
+                })
+            })
+            
+            setCoachingServices((prevState) => [...prevState, ...services])
+            setLoading(false)   
+        } catch (error) {
+            toast.error('Could not fetch services')
+        }
+    }
 
 //  Modify classNames here and in CSS
   return (
@@ -86,12 +128,17 @@ function Category() {
 
             <br />
             <br />
+            {lastFetchedService && (
+                <p className='loadMore' onClick={onFetchMoreServices}>
+                    Load More
+                </p>
+            )}
             </>
             ) : ( 
-            <p>No Services for {params.categoryName}</p>
-        )}
-    </div>
-  )
+                <p>No Services for {params.categoryName}</p>
+            )}
+        </div>
+    )
 }
 
 export default Category
