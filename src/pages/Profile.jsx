@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getAuth, updateProfile } from 'firebase/auth'
-import { doc, updateDoc } from 'firebase/firestore'
+import { doc, updateDoc, collection, getDocs, query, where, orderBy, deleteDoc } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import ServiceItem from '../components/ServiceItem'
 import arrowRight from '../assets/svg/keyboardArrowRightIcon.svg'
 import clipboard2Fill from '../assets/svg/clipboard2Fill.svg'
 
 function Profile() {
   const auth = getAuth()
+  const [loading, setLoading] = useState(true)
+  const [services, setServices] = useState(null)
+
   // setting changeDetails to false means we DONT want to change anything, YET.
   const [ changeDetails, setChangeDetails ] = useState(false)
 
@@ -20,9 +24,34 @@ function Profile() {
 
   const { name, email } = formData
 
-  // useEffect(() => {
-  //   console.log(auth.currentUser)
-  // }, [])
+  useEffect(() => {
+      const fetchUserServices = async () => {
+          const servicesRef = collection(db, 'coachingServices')
+
+          const q = query(
+              servicesRef,
+              where('userRef', '==', auth.currentUser.uid),
+              orderBy('timestamp', 'desc')
+          )
+
+          const querySnap = await getDocs(q)
+
+          let services = []
+
+          querySnap.forEach((doc) => {
+              return services.push({
+                  id: doc.id,
+                  data: doc.data(),
+              })
+          })
+
+          setServices(services)
+          setLoading(false)
+          console.log(services)
+      }
+
+      fetchUserServices()
+  }, [auth.currentUser.uid])
 
   const navigate = useNavigate()
 
@@ -59,6 +88,20 @@ function Profile() {
       [e.target.id]: e.target.value,
     }))
   }
+
+  const onDelete = async (serviceId) => {
+    if (window.confirm('Are you sure you want to delete?')) {
+      // Can edit this 'await' by referencing section 16 video 110 @ 10:30
+      await deleteDoc(doc(db, 'coachingServices', serviceId))
+      const updatedServices = services.filter(
+        (service) => service.id !== serviceId
+      )
+      setServices(updatedServices)
+      toast.success('Successfully deleted service')
+    }
+  }
+
+  const onEdit = (serviceId) => navigate(`/edit-service/${serviceId}`)
 
   return (
     <div>
@@ -106,10 +149,27 @@ function Profile() {
         </div>
 
         <Link to='/create-service' className='createListing'>
-          <img src={clipboard2Fill} alt="pen and paper" />
-          <p>Create a New Service</p>
-          <img src={arrowRight} alt="arrow right" />
+            <img src={clipboard2Fill} alt="pen and paper" />
+            <p>Create a New Service</p>
+            <img src={arrowRight} alt="arrow right" />
         </Link>
+
+        {!loading && services?.length > 0 && (
+            <>
+                <p className='listingText'>Your Services</p>
+                <ul className='listingsList'>
+                    {services.map((service) => (
+                        <ServiceItem
+                            key={service.id}
+                            service={service.data}
+                            id={service.id}
+                            onDelete={() => onDelete(service.id)}
+                            onEdit={() => onEdit(service.id)}
+                        />
+                    ))}
+                </ul>
+            </>
+        )}
       </main>
     </div>
   )
