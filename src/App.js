@@ -11,6 +11,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import Profile from './pages/Profile';
 import CreateService from './pages/CreateService'
 import Service from './pages/Service';
+import Contact from './pages/Contact'
 
 
 
@@ -27,10 +28,11 @@ function App() {
           <Route path='/sign-in' element={<SignIn />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
-          {/* <Route path='/create-listing' element={<PrivateRoute />}> */}
+          {/* <Route path='/create-service' element={<PrivateRoute />}> */}
             <Route path='/create-service' element={<CreateService />} />
           {/* </Route> */}
           <Route path='/category/:categoryName/:serviceId' element={<Service />} />
+          <Route path='/contact/:coachId' element={<Contact />} />
         </Routes>
         <Navbar />
       </Router>

@@ -88,7 +88,7 @@ function Service() {
 
         {auth.currentUser?.uid !== service.userRef && (
             <Link
-                to={`/contact/${service.userRef}?serviceName=${service.name}`}
+                to={`/contact/${service.userRef}?coachName=${service.name}`}
                 className='primaryButton'
             >
                 Contact Coach
