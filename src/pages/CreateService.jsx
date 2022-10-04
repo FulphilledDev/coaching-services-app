@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
+
 
 function CreateService() {
     const [ geolocationEnabled, setGeolocationEnabled ] = useState(true)
@@ -65,7 +67,52 @@ function CreateService() {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        console.log(formData)
+        //console.log(formData)
+
+        setLoading(true)
+
+        if (yearlyPrice >= subscriptionPrice) {
+          setLoading(false)
+          toast.error('Yearly price needs to be less than subscription price')
+          return
+        }
+
+        if (images.length > 1) {
+          setLoading(false)
+          toast.error('Max 2 images')
+          return
+        }
+
+        let geolocation = {}
+        let location
+
+        if (geolocationEnabled) {
+          const response = await fetch(
+          `https://maps.googleapis.com/maps/api/geocode/json?address=${businessLocation}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`
+        )
+
+        const data = await response.json()
+
+        geolocation.lat = data.results[0]?.geometry.location.lat ?? 0
+        geolocation.lng = data.results[0]?.geometry.location.lng ?? 0
+
+        location =
+          data.status === 'ZERO_RESULTS'
+            ? undefined
+            : data.results[0]?.formatted_address
+
+        if (location === undefined || location.includes('undefined')) {
+          setLoading(false)
+          toast.error('Please enter a correct address')
+          return
+        }
+      } else {
+        geolocation.lat = latitude
+        geolocation.lng = longitude
+        location = businessLocation
+      }
+
+      setLoading(false)
     }
 
     const onMutate = (e) => {
@@ -310,7 +357,7 @@ function CreateService() {
 
           {yearly && (
             <>
-              <label className='formLabel'>Discounted Price</label>
+              <label className='formLabel'>Yearly Price</label>
               <input
                 className='formInputSmall'
                 type='number'
