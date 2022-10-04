@@ -231,7 +231,7 @@ function CreateService() {
       <main>
         <form onSubmit={onSubmit}>
           <label className='formLabel'>Category</label>
-          <div className='formButtons'>
+          <div className='formButtons categoryButtons'>
             <button
               type='button'
               className={ category === 'mental-performance' ? 'formButtonActive' : 'formButton'}
