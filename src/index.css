@@ -439,7 +439,7 @@ button {
 
 .categoryListingImg {
   width: 30%;
-  height: 100px;
+  height: 150px;
   border-radius: 1.5rem;
   object-fit: cover;
 }
