@@ -449,26 +449,44 @@ button {
 
 .categoryListingImg {
   width: 30%;
-  height: 150px;
-  border-radius: 1.5rem;
+  height: 200px;
+  width: 200px;
+  border: 3px #006eff;
+  border-radius: 50%;
   object-fit: cover;
 }
 
 @media (min-width: 1024px) {
   .categoryListingImg {
-    width: 19%;
-    height: 217px;
+    height: 215px;
+    width: 215px;
   }
 }
 
 .categoryListingDetails {
-  width: 65%;
+  width: 80%;
+  margin-left: 1rem;
 }
 
 @media (min-width: 1024px) {
   .categoryListingDetails {
-    width: 79%;
+    width: 100%;
+    margin-left: 1rem;
   }
+}
+
+@media (max-width: 1023px) {
+  .categoryListingImg {
+      margin: .5rem .5rem;
+      height: 20%;
+      width: 20%;
+    }
+}
+
+@media (max-width: 525px) {
+  .categoryListingImg {
+      margin: .25rem .25rem;
+    }
 }
 
 .categoryListingLocation {
@@ -509,6 +527,24 @@ button {
   font-weight: 500;
   font-size: 0.7rem;
   margin-left: 10px;
+}
+
+@media (max-width: 425px) {
+  .categoryListingName {
+    font-size: 1rem;
+  }
+
+  .categoryListingPrice {
+    font-size: .85rem;
+  }
+
+  .removeIcon {
+    margin-right: 1.25rem;
+  }
+
+  .editIcon {
+    margin-right: 1.25rem;
+  }
 }
 
 .loadMore {
@@ -763,7 +799,7 @@ button {
   font-weight: 600;
 }
 
-.lisitingsList {
+.listingsList {
   padding: 0;
   margin: 0 1rem;
 }
