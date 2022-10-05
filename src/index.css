@@ -345,6 +345,10 @@ button {
   margin: 1rem 1rem;
 }
 
+.exploreParagraphHeading {
+  margin: 1rem 1rem;
+}
+
 .exploreCategoryHeading {
   margin-top: 3rem;
 }
@@ -883,7 +887,6 @@ button {
 .categoryButtons {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 1rem;
 }
 
 .formButton,

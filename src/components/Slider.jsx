@@ -42,11 +42,11 @@ function Slider() {
   }
 
   if (services.length === 0) {
-    return <> <p>No Recommended Services</p> </>
+    return <> <p className='exploreParagraphHeading'>No Recommended Services</p> </>
   }
 
   return (
-    services && (
+    services.length >= 1 && (
       <>
         <p className='exploreHeading'>Recommended</p>
 
