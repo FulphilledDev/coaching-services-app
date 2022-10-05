@@ -37,10 +37,10 @@ function ServiceItem({ service, id, onDelete, onEdit }) {
           </p>
           {/* Add conditional for "avgRating" and "numberOfClients" (still need to add to service profile, database, Review form for clients? (Maybe just comment section with option to select stars), etc) */}
           <div className="categoryListingInfoDiv">
-              <img src={starFillIcon} alt="star rating" />
-              <img src={starFillIcon} alt="star rating" />
-              <img src={starFillIcon} alt="star rating" />
-              <img src={starHalfIcon} alt="star rating" />
+              <img src={starFillIcon} alt="star rating" className='ratingImg'/>
+              <img src={starFillIcon} alt="star rating" className='ratingImg'/>
+              <img src={starFillIcon} alt="star rating" className='ratingImg'/>
+              <img src={starHalfIcon} alt="star rating" className='ratingImg'/>
               <p className="categoryListingInfoText">
                   {service.minCommit > 1 ? `${service.minCommit} reviews` : 'No Ratings Yet'}
               </p>
