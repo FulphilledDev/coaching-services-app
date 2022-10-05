@@ -11,6 +11,7 @@ import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
 import Spinner from '../components/Spinner'
 import shareIcon from '../assets/svg/shareIcon.svg'
+import { FaCheck } from 'react-icons/fa'
 SwiperCore.use([ Navigation, Pagination, Scrollbar, A11y])
 
 function Service() {
@@ -78,23 +79,30 @@ function Service() {
 
         <div className='listingDetails'>
         <p className='listingName'>
-            {service.name} - $
-            {service.yearly
+            {service.name} - 
+            {service.yearly 
                 ? service.yearlyPrice
                     .toString()
+                    .padStart(service.yearlyPrice.length+1, '$')
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                : service.subscriptionPrice
+                    .concat(' / Year')
+                : <></> }
+            {service.yearly || service.subscription ? ' or ' : <></>}
+            {service.subscription 
+                ? service.subscriptionPrice
                     .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-            <span> / Month</span>
+                    .padStart(service.subscriptionPrice.length+1, '$')
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                    .concat(' / Month')
+                : <></> }
         </p>
-        <p className='listingLocation'>{service.businessLocation}</p>
+        <p className='listingLocation'>{service.location}</p>
         <p className='listingType'>
           {service.category}
         </p>
         {service.yearly && (
           <p className='discountPrice'>
-            ${service.subscriptionPrice - service.yearlyPrice} discount
+            Save ${((service.subscriptionPrice)*12) - service.yearlyPrice} / Year
           </p>
         )}
         <ul className='listingDetailsList'>
@@ -103,31 +111,42 @@ function Service() {
                     ? `${service.minCommit} Month Minimum Commitment`
                     : '1 Month Commitment'}
             </li>
-            <li>{service.inPersonCoaching && 'In Person Coaching Available'}</li>
-            <li>{service.onlineCoaching && 'Online Coaching Available'}</li>
+            <li>{service.inPersonCoaching && 
+                <><FaCheck 
+                    className='listingDetailsFaCheck'/> In Person Coaching Available
+                </>}
+            </li>
+            <li>{service.onlineCoaching && 
+                <><FaCheck 
+                    className='listingDetailsFaCheck'/> Online Coaching Available
+                </>}
+            </li>
         </ul>
 
-        <p className='listingLocationTitle'>Business Location</p>
-
-        <div className='leafletContainer'>
-            <MapContainer
-                style={{ height: '100%', width: '100%' }}
-                center={[service.geolocation.lat, service.geolocation.lng]}
-                zoom={13}
-                scrollWheelZoom={false}
-            >
-                <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'
-                />
-
-                <Marker
-                    position={[service.geolocation.lat, service.geolocation.lng]}
+        { service.location && (
+        <>
+            <p className='listingLocationTitle'>Business Location</p>
+            <div className='leafletContainer'>
+                <MapContainer
+                    style={{ height: '100%', width: '100%' }}
+                    center={[service.geolocation.lat, service.geolocation.lng]}
+                    zoom={13}
+                    scrollWheelZoom={false}
                 >
-                    <Popup>{service.businessLocation}</Popup>
-                </Marker>
-            </MapContainer>
-        </div>
+                    <TileLayer
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'
+                    />
+
+                    <Marker
+                        position={[service.geolocation.lat, service.geolocation.lng]}
+                    >
+                        <Popup>{service.businessLocation}</Popup>
+                    </Marker>
+                </MapContainer>
+            </div>
+        </>)}
+        { !service.businessLocation && (<></>)}
 
         {auth.currentUser?.uid !== service.userRef && (
             <Link

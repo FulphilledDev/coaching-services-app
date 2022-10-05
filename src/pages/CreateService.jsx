@@ -24,11 +24,12 @@ function CreateService() {
       category: "mental-performance",
       inPersonCoaching: false,
       onlineCoaching: false,
+      hourlyRate: 0,
       subscription: false,
       subscriptionPrice: 0,
-      minCommit: 1,
       yearly: false,
       yearlyPrice: 0,
+      minCommit: 1,
       avgRating: 3.5,
       businessLocation: "",
 		  latitude: 0,
@@ -40,17 +41,18 @@ function CreateService() {
       name,
       category,
       inPersonCoaching,
-      onlineCoaching,
-      minCommit,
-      businessLocation,
+      onlineCoaching,  
+      hourlyRate,    
       subscription,
       yearly,
       subscriptionPrice,
       yearlyPrice,
-      avgRating,
-      images,
+      minCommit,
+      avgRating,      
+      businessLocation,
       latitude,
       longitude,
+      images,
     } = formData
 
     const auth = getAuth()
@@ -80,9 +82,9 @@ function CreateService() {
 
         setLoading(true)
 
-        if (yearlyPrice >= subscriptionPrice) {
+        if (yearlyPrice <= subscriptionPrice) {
           setLoading(false)
-          toast.error('Yearly price needs to be less than subscription price')
+          toast.error('Make sure yearly price is greater than subscription price')
           return
         }
 
@@ -110,11 +112,11 @@ function CreateService() {
             ? undefined
             : data.results[0]?.formatted_address
 
-        if (location === undefined || location.includes('undefined')) {
-          setLoading(false)
-          toast.error('Please enter a correct address')
-          return
-        }
+        // if (location === undefined || location.includes('undefined')) {
+        //   setLoading(false)
+        //   toast.error('Please enter a correct address')
+        //   return
+        // }
       } else {
         geolocation.lat = latitude
         geolocation.lng = longitude
@@ -274,30 +276,6 @@ function CreateService() {
             required
           />
 
-          <label className='formLabel'>In-Person Coaching</label>
-          <div className='formButtons'>
-            <button
-              className={inPersonCoaching ? 'formButtonActive' : 'formButton'}
-              type='button'
-              id='inPersonCoaching'
-              value={true}
-              onClick={onMutate}
-            >
-              Yes
-            </button>
-            <button
-              className={
-                !inPersonCoaching && inPersonCoaching !== null ? 'formButtonActive' : 'formButton'
-              }
-              type='button'
-              id='inPersonCoaching'
-              value={false}
-              onClick={onMutate}
-            >
-              No
-            </button>
-          </div>
-
           <label className='formLabel'>Online Coaching</label>
           <div className='formButtons'>
             <button
@@ -323,6 +301,32 @@ function CreateService() {
               No
             </button>
           </div>
+
+          <label className='formLabel'>In-Person Coaching</label>
+          <div className='formButtons'>
+            <button
+              className={inPersonCoaching ? 'formButtonActive' : 'formButton'}
+              type='button'
+              id='inPersonCoaching'
+              value={true}
+              onClick={onMutate}
+            >
+              Yes
+            </button>
+            <button
+              className={
+                !inPersonCoaching && inPersonCoaching !== null ? 'formButtonActive' : 'formButton'
+              }
+              type='button'
+              id='inPersonCoaching'
+              value={false}
+              onClick={onMutate}
+            >
+              No
+            </button>
+          </div>
+
+          
 
           {/* make this minimum commitment area */}
           {/* <div className='formRooms flex'>
@@ -355,14 +359,17 @@ function CreateService() {
           </div> */}
 
 
-          <label className='formLabel'>Business Location</label>
-          <textarea
-            className='formInputAddress'
-            type='text'
-            id='businessLocation'
-            value={businessLocation}
-            onChange={onMutate}
-          />
+          {inPersonCoaching && 
+            (<><label className='formLabel'>Business Location</label>
+              <textarea
+                className='formInputAddress'
+                type='text'
+                id='businessLocation'
+                value={businessLocation}
+                onChange={onMutate}
+              />
+            </>
+          )}
 
           {!geolocationEnabled && (
             <div className='formLatLng flex'>
@@ -391,7 +398,19 @@ function CreateService() {
             </div>
           )}
 
-          <label className='formLabel'>Yearly Payments</label>
+          <label className='formLabel'>Hourly Rate</label>
+          <input
+            className='formInputSmall'
+            type='number'
+            id='hourlyRate'
+            value={hourlyRate}
+            onChange={onMutate}
+            min='10'
+            max='10000'
+            required
+          />
+
+          <label className='formLabel'>Yearly Payments Available</label>
           <div className='formButtons'>
             <button
               className={yearly ? 'formButtonActive' : 'formButton'}
@@ -415,24 +434,9 @@ function CreateService() {
             </button>
           </div>
 
-          <label className='formLabel'>Subscription Price</label>
-          <div className='formPriceDiv'>
-            <input
-              className='formInputSmall'
-              type='number'
-              id='subscriptionPrice'
-              value={subscriptionPrice}
-              onChange={onMutate}
-              min='10'
-              max='10000'
-              required
-            />
-            {subscription === true && <p className='formPriceText'>$ / Month</p>}
-          </div>
-
           {yearly && (
             <>
-              <label className='formLabel'>Yearly Price</label>
+              <label className='formLabel'>Yearly Cost</label>
               <input
                 className='formInputSmall'
                 type='number'
@@ -446,9 +450,63 @@ function CreateService() {
             </>
           )}
 
+          {/* <div className='formPriceDiv'>
+            <input
+              className='formInputSmall'
+              type='number'
+              id='subscriptionPrice'
+              value={subscriptionPrice}
+              onChange={onMutate}
+              min='10'
+              max='10000'
+              required
+            />
+            </div>
+            {subscription === true && <p className='formPriceText'>$ / Month</p>} */}
+
+          <label className='formLabel'>Subscriptions Available</label>
+          <div className='formButtons'>
+            <button
+              className={subscription ? 'formButtonActive' : 'formButton'}
+              type='button'
+              id='subscription'
+              value={true}
+              onClick={onMutate}
+            >
+              Yes
+            </button>
+            <button
+              className={
+                !subscription && subscription !== null ? 'formButtonActive' : 'formButton'
+              }
+              type='button'
+              id='subscription'
+              value={false}
+              onClick={onMutate}
+            >
+              No
+            </button>
+          </div>
+
+          {subscription && (
+            <>
+              <label className='formLabel'>Subscription Cost</label>
+              <input
+                className='formInputSmall'
+                type='number'
+                id='subscriptionPrice'
+                value={subscriptionPrice}
+                onChange={onMutate}
+                min='10'
+                max='100000'
+                required={subscription}
+              />
+            </>
+          )}
+
           <label className='formLabel'>Service Image</label>
           <p className='imagesInfo'>
-            We suggest using the same Image as your Profile.
+            We suggest using a professional headshot.
           </p>
           <input
             className='formInputFile'

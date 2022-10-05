@@ -19,20 +19,21 @@ function ServiceItem({ service, id, onDelete, onEdit }) {
               {service.name}
           </p>
           <p className="categoryListingPrice">
-              ${service.yearly 
-                  ? service.yearlyPrice
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                  : service.subscriptionPrice
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-              <span> - </span>
-              ${service.subscription 
-                  ? service.subscriptionPrice
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                  : 'No Subscriptions'}
-              {service.subscription === true && ' / Month'}
+                {service.yearly 
+                    ? service.yearlyPrice
+                        .toString()
+                        .padStart(service.yearlyPrice.length+1, '$')
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                        .concat(' / Year')
+                    : <></> }
+                { service.yearly && service.subscription ? ' or ' : <></>}
+                {service.subscription 
+                    ? service.subscriptionPrice
+                        .toString()
+                        .padStart(service.subscriptionPrice.length+1, '$')
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                        .concat(' / Month')
+                    : <></> }
           </p>
           {/* Add conditional for "avgRating" and "numberOfClients" (still need to add to service profile, database, Review form for clients? (Maybe just comment section with option to select stars), etc) */}
           <div className="categoryListingInfoDiv">
