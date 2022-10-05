@@ -44,8 +44,8 @@ function CreateService() {
       onlineCoaching,  
       hourlyRate,    
       subscription,
-      yearly,
       subscriptionPrice,
+      yearly,
       yearlyPrice,
       minCommit,
       avgRating,      
@@ -82,9 +82,20 @@ function CreateService() {
 
         setLoading(true)
 
-        if (yearlyPrice <= subscriptionPrice) {
+
+        // Make sure yearly price is more than subscription price
+        if (yearlyPrice >= (subscriptionPrice*12)) {
           setLoading(false)
-          toast.error('Make sure yearly price is greater than subscription price')
+          toast.error('Check that yearly price is greater than subscription price per year')
+          console.log(yearlyPrice)
+          console.log(subscriptionPrice)
+          return
+        }
+
+        // Must select inPerson or Online Coaching
+        if (!inPersonCoaching && !onlineCoaching) {
+          setLoading(false)
+          toast.error('Must select either Online or In Person Coaching')
           return
         }
 
@@ -183,6 +194,7 @@ function CreateService() {
       delete formDataCopy.images
       delete formDataCopy.businessLocation
       !formDataCopy.yearly && delete formDataCopy.yearlyPrice
+      !formDataCopy.subscription && delete formDataCopy.subscriptionPrice
 
       const docRef = await addDoc(collection(db, 'coachingServices'), formDataCopy)
       setLoading(false)
@@ -217,6 +229,7 @@ function CreateService() {
         [e.target.id]: boolean ?? e.target.value,
       }))
     }
+
   }
 
   if(loading) {
@@ -325,8 +338,6 @@ function CreateService() {
               No
             </button>
           </div>
-
-          
 
           {/* make this minimum commitment area */}
           {/* <div className='formRooms flex'>

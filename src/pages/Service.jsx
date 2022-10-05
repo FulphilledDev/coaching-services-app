@@ -107,9 +107,12 @@ function Service() {
         )}
         <ul className='listingDetailsList'>
             <li>
-                {service.minCommit > 1
+                {service.minCommit >= 1
                     ? `${service.minCommit} Month Minimum Commitment`
                     : '1 Month Commitment'}
+                {service.minCommit === 0
+                    ? 'No Commitments'
+                    : <></>}
             </li>
             <li>{service.inPersonCoaching && 
                 <><FaCheck 
