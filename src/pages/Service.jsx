@@ -79,7 +79,7 @@ function Service() {
 
         <div className='listingDetails'>
         <p className='listingName'>
-            {service.name} - 
+            {service.name ? service.name + ' - ' : <></> } 
             {service.yearly 
                 ? service.yearlyPrice
                     .toString()
@@ -87,7 +87,7 @@ function Service() {
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
                     .concat(' / Year')
                 : <></> }
-            {service.yearly || service.subscription ? ' or ' : <></>}
+            {service.yearly && service.subscription ? ' or ' : <></>}
             {service.subscription 
                 ? service.subscriptionPrice
                     .toString()

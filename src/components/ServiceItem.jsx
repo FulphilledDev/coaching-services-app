@@ -13,7 +13,7 @@ function ServiceItem({ service, id, onDelete, onEdit }) {
             <img src={service.imgUrls[0]} alt={service.name} className='categoryListingImg' />
             <div className="categoryListingDetails">
                 <p className="categoryListingLocation">
-                    {service.businessLocation}
+                    {service.location}
                 </p>
                 <p className="categoryListingName">
                     {service.name}

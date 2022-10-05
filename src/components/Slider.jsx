@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore'
-import { db } from '../firebase.config'
+import { db } from '../firebase.config' 
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
@@ -48,30 +48,48 @@ function Slider() {
   return (
     services.length >= 1 && (
       <>
-        <p className='exploreHeading'>Recommended</p>
+        <p className='exploreHeading'>Most Recent Additions</p>
 
-        <Swiper slidesPerView={1} pagination={{ clickable: true }}>
+        <Swiper 
+          slidesPerView={2} 
+          pagination={{ clickable: true }}
+          scrollbar={{ draggable: true}}
+        >
           {services.map(({ data, id }) => (
-            <SwiperSlide
+            <SwiperSlide 
               key={id}
               onClick={() => navigate(`/category/${data.category}/${id}`)}
-            >
-              <div
-                //   This is where it should display service.imgUrls
-                style={{
-                  background: `url(${data.imgUrls[0]}) center no-repeat`, 
-                  backgroundSize: 'cover',
-                }}
-                className='swiperSlideDiv'
               >
-                <p className='swiperSlideText'>{data.name}</p>
-                <p className='swiperSlideText'>{data.category}</p>
-                <p className='swiperSlidePrice'>
-                  ${data.yearlyPrice ?? data.subscriptionPrice}{' '}
-                  {data.subscription === true && '/ month'}
+              <li className='swiperCategoryListing'>
+              <img src={data.imgUrls[0]} alt={data.name} className='swiperCategoryListingImg' />
+              <div className="swiperListingDetails">
+                <p className="swiperListingName">
+                    {data.name}
                 </p>
+                <p className="swiperListingPrice">
+                    {data.yearly 
+                        ? data.yearlyPrice
+                            .toString()
+                            .padStart(data.yearlyPrice.length+1, '$')
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                            .concat(' / Year')
+                        : <></> }
+                    { data.yearly && data.subscription ? ' or ' : <></>}
+                    {data.subscription 
+                        ? data.subscriptionPrice
+                            .toString()
+                            .padStart(data.subscriptionPrice.length+1, '$')
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                            .concat(' / Month')
+                        : <></> }
+                </p>
+                <p className='swiperListingType'>
+                    {data.category}
+                </p>
+                {/* Add conditional for "avgRating" and "numberOfClients" (still need to add to data profile, database, Review form for clients? (Maybe just comment section with option to select stars), etc) */}
               </div>
-            </SwiperSlide>
+              </li>
+              </SwiperSlide>
           ))}
         </Swiper>
       </>
