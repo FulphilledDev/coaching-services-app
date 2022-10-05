@@ -144,7 +144,7 @@ function Service() {
                     <Marker
                         position={[service.geolocation.lat, service.geolocation.lng]}
                     >
-                        <Popup>{service.businessLocation}</Popup>
+                        <Popup>{service.location}</Popup>
                     </Marker>
                 </MapContainer>
             </div>
