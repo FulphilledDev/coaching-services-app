@@ -111,7 +111,7 @@ function Service() {
 
         { service.location && (
             <>
-            <p className="categoryListingLocation">Business Location</p>
+            <p className="serviceListingLocation">Business Location</p>
             <p className="categoryListingAddress">
                 {service.location}
             </p>

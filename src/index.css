@@ -497,7 +497,13 @@ button {
   background: #ffffff;
   width: 100%;
 }
-
+.serviceListingLocation {
+  font-weight: 600;
+  font-size: 1.25rem;
+  opacity: 0.8;
+  margin-bottom: 0;
+  margin-left: 1rem;
+}
 .serviceLocationTitle {
   margin: 1rem;
 }
@@ -526,7 +532,6 @@ button {
   font-size: 1.25rem;
   opacity: 0.8;
   margin-bottom: 0;
-  margin-left: 1rem;
 }
 
 .categoryListingAddress {
