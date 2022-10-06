@@ -12,8 +12,11 @@ function ServiceItem({ service, id, onDelete, onEdit }) {
         <Link to={`/category/${service.category}/${id}`} className='categoryListingLink'>
             <img src={service.imgUrls[0]} alt={service.name} className='categoryListingImg' />
             <div className="categoryListingDetails">
-                <p className="categoryListingLocation">
-                    {service.location}
+                <p className="categoryListingQuote">
+                  {service.quote 
+                    ? `"${service.quote}"`
+                    : <></>
+                  }
                 </p>
                 <p className="categoryListingName">
                     {service.name}

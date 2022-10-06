@@ -372,8 +372,6 @@ button {
   border-radius: 1.5rem;
   height: 175px;
   padding: 0.25rem 0.5rem;
-
-
 }
 
 .swiperCategoryListingImg {
@@ -392,6 +390,13 @@ button {
   width: 80%;
   margin-left: 1rem;
   margin: 0 1rem;
+}
+
+.swiperListingQuote {
+      margin: 0.3rem auto;
+      font-weight: 400;
+      opacity: 0.8;
+      font-size: 0.75rem;
 }
 
 .swiperListingName {
@@ -542,16 +547,21 @@ button {
 }
 
 .categoryListingLocation {
-  font-weight: 600;
-  font-size: 1.25rem;
+  font-weight: 400;
+  font-size: 1rem;
   opacity: 0.8;
   margin-bottom: 0;
 }
 
-.categoryListingAddress {
+.categoryListingAddress,
+.categoryListingQuote {
   margin: 0.3rem 1rem;
   font-weight: 400;
   opacity: 0.8;
+}
+
+.categoryListingQuote {
+  margin: 1rem auto;
 }
 
 .categoryListingName {
@@ -961,6 +971,7 @@ button {
 .formInput,
 .formInputAddress,
 .formInputName,
+.formInputQuote,
 .formInputSmall,
 .formInputFile,
 .formButtonActive {
@@ -987,6 +998,7 @@ button {
 .formInput,
 .formInputAddress,
 .formInputName,
+.formInputQuote,
 .formInputSmall,
 .formInputFile {
   border: none;
@@ -1001,7 +1013,8 @@ button {
   text-align: center;
 }
 
-.formInputName {
+.formInputName,
+.formInputQuote {
   padding: 0.9rem 1rem;
   width: 90%;
   max-width: 326px;

@@ -53,7 +53,7 @@ function Slider() {
         <p className='exploreHeading'>Most Recent Additions</p>
 
         <Swiper 
-          slidesPerView={2} 
+          slidesPerView={1} 
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true}}
         >
@@ -65,6 +65,12 @@ function Slider() {
               <li className='swiperCategoryListing'>
               <img src={data.imgUrls[0]} alt={data.name} className='swiperCategoryListingImg' />
               <div className="swiperListingDetails">
+                <p className="swiperListingQuote">
+                  {data.quote 
+                    ? `"${data.quote}"`
+                    : <></>
+                  }
+                </p>
                 <p className="swiperListingName">
                     {data.name}
                 </p>
@@ -85,9 +91,11 @@ function Slider() {
                             .concat(' / Month')
                         : <></> }
                 </p>
+                <div className="listingTypeDive">
                 <p className='listingType'>
                     {data.category}
                 </p>
+                </div>
                 {/* Add conditional for "avgRating" and "numberOfClients" (still need to add to data profile, database, Review form for clients? (Maybe just comment section with option to select stars), etc) */}
               </div>
               </li>

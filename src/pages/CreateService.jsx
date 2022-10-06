@@ -22,6 +22,7 @@ function CreateService() {
       // Make category a dropdown menu
       name: "",
       category: "mental-performance",
+      quote: "",
       inPersonCoaching: false,
       onlineCoaching: false,
       hourlyRate: 0,
@@ -40,6 +41,7 @@ function CreateService() {
     const {
       name,
       category,
+      quote,
       inPersonCoaching,
       onlineCoaching,  
       hourlyRate,    
@@ -289,6 +291,18 @@ function CreateService() {
             required
           />
 
+          <label className='formLabel'>Quote</label>
+          <input
+            className='formInputQuote'
+            type='text'
+            id='quote'
+            value={quote}
+            onChange={onMutate}
+            maxLength='125'
+            minLength='5'
+            required
+          />
+
           <label className='formLabel'>Online Coaching</label>
           <div className='formButtons'>
             <button
@@ -340,35 +354,6 @@ function CreateService() {
           </div>
 
           {/* make this minimum commitment area */}
-          {/* <div className='formRooms flex'>
-            <div>
-              <label className='formLabel'>Bedrooms</label>
-              <input
-                className='formInputSmall'
-                type='number'
-                id='bedrooms'
-                value={bedrooms}
-                onChange={onMutate}
-                min='1'
-                max='50'
-                required
-              />
-            </div>
-            <div>
-              <label className='formLabel'>Bathrooms</label>
-              <input
-                className='formInputSmall'
-                type='number'
-                id='bathrooms'
-                value={bathrooms}
-                onChange={onMutate}
-                min='1'
-                max='50'
-                required
-              />
-            </div>
-          </div> */}
-
 
           {inPersonCoaching && 
             (<><label className='formLabel'>Business Location</label>
