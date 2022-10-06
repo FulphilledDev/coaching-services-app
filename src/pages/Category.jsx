@@ -61,7 +61,6 @@ function Category() {
         }
 
         fetchServices()
-        console.log(params)
         
     }, [params.categoryName])
 
