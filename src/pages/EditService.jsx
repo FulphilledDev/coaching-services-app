@@ -278,7 +278,7 @@ function EditService() {
   return (
     <div className='profile'>
       <header>
-        <p className='pageHeader'>Edit a Service</p>
+        <p className='pageHeader editServiceHeading'>Edit a Service</p>
       </header>
 
       <main>
@@ -535,7 +535,7 @@ function EditService() {
 
           {/* make this minimum commitment area */}
 
-          <label className='formLabel'>Service Image</label>
+          <label className='formLabel'>Profile Image</label>
           <p className='imagesInfo'>
             We suggest using the same Image as your Profile.
           </p>

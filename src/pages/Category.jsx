@@ -32,7 +32,7 @@ function Category() {
                     servicesRef, 
                     where('category', '==', params.categoryName), // There is no "type", instead "category"
                     orderBy('timestamp', 'desc'), 
-                    limit(5)
+                    limit(3)
                 )
 
                 // Execute a query
@@ -61,6 +61,8 @@ function Category() {
         }
 
         fetchServices()
+        console.log(params)
+        
     }, [params.categoryName])
 
     // Pagination / Load More
@@ -105,8 +107,7 @@ function Category() {
     <div className='category'>
         <header>
             <p className="pageHeader">
-                {/* Add conditional for Life Performance and Nutrition */}
-                {params.categoryName === 'mental-performance' ? 'Mental Performance' : 'Nutrition'}
+                {params.categoryName.replace((/(^\w)|([-\s]\w)/g), match => match.toUpperCase())}
             </p>
         </header>
 
@@ -128,16 +129,16 @@ function Category() {
 
             <br />
             <br />
-            {lastFetchedService && (
+            {coachingServices.length > 2 && lastFetchedService ? (
                 <div className='loadMoreDiv'>
                 <p className='loadMore' onClick={onFetchMoreServices}>
                     Load More
                 </p>
                 </div>
-            )}
+            ): <></>}
             </>
             ) : ( 
-                <p>No Services for {params.categoryName}</p>
+                <p>No Services are available at this time.</p>
             )}
         </div>
     )

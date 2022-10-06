@@ -246,7 +246,7 @@ function CreateService() {
   return (
     <div className='profile'>
       <header>
-        <p className='pageHeader'>Create a Service</p>
+        <p className='pageHeader createServiceHeading'>Create a Service</p>
       </header>
 
       <main>
@@ -518,7 +518,7 @@ function CreateService() {
             </div>
             {subscription === true && <p className='formPriceText'>$ / Month</p>} */}
 
-          <label className='formLabel'>Service Image</label>
+          <label className='formLabel'>Profile Image</label>
           <p className='imagesInfo'>
             We suggest using a professional headshot.
           </p>
