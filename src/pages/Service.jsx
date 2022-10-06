@@ -107,6 +107,20 @@ function Service() {
             </div>
         </li>
 
+        { !service.email 
+            ? <></> 
+            : <>
+                <p className="serviceListingLocation">Information</p>
+                <p className="categoryListingAddress">
+                    {service.email}
+                </p>
+                </>
+            }
+        
+        <br />
+        <br />
+
+
         { !service.location ? (<p className="categoryListingAddress"> No business location available. Provides stricly online coaching</p>) : <></>}
 
         { service.location && (

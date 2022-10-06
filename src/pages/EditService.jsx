@@ -22,9 +22,12 @@ function EditService() {
     const [ formData, setFormData ] = useState({
       // Make category a dropdown menu
       name: "",
+      email: "",
       category: "mental-performance",
+      quote: "",
       inPersonCoaching: false,
       onlineCoaching: false,
+      hourlyRate: 0,
       subscription: false,
       subscriptionPrice: 0,
       minCommit: 1,
@@ -39,19 +42,22 @@ function EditService() {
 
     const {
       name,
+      email,
       category,
+      quote,
       inPersonCoaching,
       onlineCoaching,
-      minCommit,
-      businessLocation,
+      hourlyRate,
       subscription,
-      yearly,
       subscriptionPrice,
+      minCommit,
+      yearly,
       yearlyPrice,
       avgRating,
-      images,
+      businessLocation,
       latitude,
       longitude,
+      images,
     } = formData
 
     const auth = getAuth()
@@ -111,15 +117,32 @@ function EditService() {
 
         setLoading(true)
 
-        if (yearlyPrice >= subscriptionPrice) {
+        // Must enter name and email 
+        if (!name && !email) {
           setLoading(false)
-          toast.error('Yearly price needs to be less than subscription price')
+          toast.error('Please enter your name and email')
+          return
+        }
+
+        // Make sure yearly price is more than subscription price
+        if (yearlyPrice >= (subscriptionPrice*12)) {
+          setLoading(false)
+          toast.error('Check that yearly price is greater than subscription price per year')
+          console.log(yearlyPrice)
+          console.log(subscriptionPrice)
+          return
+        }
+
+        // Must select inPerson or Online Coaching
+        if (!inPersonCoaching && !onlineCoaching) {
+          setLoading(false)
+          toast.error('Must select either Online or In Person Coaching')
           return
         }
 
         if (images.length > 1) {
           setLoading(false)
-          toast.error('Max 2 images')
+          toast.error('Select only 1 image')
           return
         }
 
@@ -141,11 +164,6 @@ function EditService() {
             ? undefined
             : data.results[0]?.formatted_address
 
-        if (location === undefined || location.includes('undefined')) {
-          setLoading(false)
-          toast.error('Please enter a correct address')
-          return
-        }
       } else {
         geolocation.lat = latitude
         geolocation.lng = longitude
@@ -211,7 +229,9 @@ function EditService() {
       formDataCopy.location = businessLocation
       delete formDataCopy.images
       delete formDataCopy.businessLocation
+      !formDataCopy.location && delete formDataCopy.location
       !formDataCopy.yearly && delete formDataCopy.yearlyPrice
+      !formDataCopy.subscription && delete formDataCopy.subscriptionPrice
 
       // Update Service
       const docRef = doc(db, 'coachingServices', params.serviceId)
@@ -307,6 +327,29 @@ function EditService() {
             required
           />
 
+          <label className='formLabel'>Email</label>
+          <input
+            className='formInputEmail'
+            type='text'
+            id='email'
+            value={email}
+            onChange={onMutate}
+            maxLength='50'
+            minLength='5'
+            required
+          />
+
+          <label className='formLabel'>Quote</label>
+          <input
+            className='formInputQuote'
+            type='text'
+            id='quote'
+            value={quote}
+            onChange={onMutate}
+            maxLength='125'
+            minLength='5'
+          />
+
           <label className='formLabel'>In-Person Coaching</label>
           <div className='formButtons'>
             <button
@@ -331,57 +374,17 @@ function EditService() {
             </button>
           </div>
 
-          <label className='formLabel'>Online Coaching</label>
-          <div className='formButtons'>
-            <button
-              className={onlineCoaching ? 'formButtonActive' : 'formButton'}
-              type='button'
-              id='onlineCoaching'
-              value={true}
-              onClick={onMutate}
-            >
-              Yes
-            </button>
-            <button
-              className={
-                !onlineCoaching && onlineCoaching !== null
-                  ? 'formButtonActive'
-                  : 'formButton'
-              }
-              type='button'
-              id='onlineCoaching'
-              value={false}
-              onClick={onMutate}
-            >
-              No
-            </button>
-          </div>
-
-          {/* make this minimum commitment area */}
-          {/* <div className='formRooms flex'>
-            <div>
-              <label className='formLabel'>Bedrooms</label>
-              <input
-                className='formInputSmall'
-                type='number'
-                id='bedrooms'
-                value={bedrooms}
+          {inPersonCoaching && 
+            (<><label className='formLabel'>Business Location</label>
+              <textarea
+                className='formInputAddress'
+                type='text'
+                id='businessLocation'
+                value={businessLocation}
                 onChange={onMutate}
-                min='1'
-                max='50'
-                required
               />
-            </div> */}
-
-
-          <label className='formLabel'>Business Location</label>
-          <textarea
-            className='formInputAddress'
-            type='text'
-            id='businessLocation'
-            value={businessLocation}
-            onChange={onMutate}
-          />
+            </>
+          )}
 
           {!geolocationEnabled && (
             <div className='formLatLng flex'>
@@ -410,7 +413,45 @@ function EditService() {
             </div>
           )}
 
-          <label className='formLabel'>Yearly Payments</label>
+          <label className='formLabel'>Online Coaching</label>
+          <div className='formButtons'>
+            <button
+              className={onlineCoaching ? 'formButtonActive' : 'formButton'}
+              type='button'
+              id='onlineCoaching'
+              value={true}
+              onClick={onMutate}
+            >
+              Yes
+            </button>
+            <button
+              className={
+                !onlineCoaching && onlineCoaching !== null
+                  ? 'formButtonActive'
+                  : 'formButton'
+              }
+              type='button'
+              id='onlineCoaching'
+              value={false}
+              onClick={onMutate}
+            >
+              No
+            </button>
+          </div>
+
+          <label className='formLabel'>Hourly Rate</label>
+          <input
+            className='formInputSmall'
+            type='number'
+            id='hourlyRate'
+            value={hourlyRate}
+            onChange={onMutate}
+            min='10'
+            max='10000'
+            required
+          />
+
+          <label className='formLabel'>Yearly Payments Available</label>
           <div className='formButtons'>
             <button
               className={yearly ? 'formButtonActive' : 'formButton'}
@@ -434,26 +475,11 @@ function EditService() {
             </button>
           </div>
 
-          <label className='formLabel'>Subscription Price</label>
-          <div className='formPriceDiv'>
-            <input
-              className='formInputSmall'
-              type='number'
-              id='subscriptionPrice'
-              value={subscriptionPrice}
-              onChange={onMutate}
-              min='10'
-              max='10000'
-              required
-            />
-            {subscription === true && <p className='formPriceText'>$ / Month</p>}
-          </div>
-
           {yearly && (
             <>
-              <label className='formLabel'>Yearly Price</label>
+              <label className='formLabel'>Cost</label>
               <input
-                className='formInputSmall'
+                className='formInputCost'
                 type='number'
                 id='yearlyPrice'
                 value={yearlyPrice}
@@ -462,8 +488,52 @@ function EditService() {
                 max='100000'
                 required={yearly}
               />
+              <> / Year</>
             </>
           )}
+
+          <label className='formLabel'>Subscriptions Available</label>
+          <div className='formButtons'>
+            <button
+              className={subscription ? 'formButtonActive' : 'formButton'}
+              type='button'
+              id='subscription'
+              value={true}
+              onClick={onMutate}
+            >
+              Yes
+            </button>
+            <button
+              className={
+                !subscription && subscription !== null ? 'formButtonActive' : 'formButton'
+              }
+              type='button'
+              id='subscription'
+              value={false}
+              onClick={onMutate}
+            >
+              No
+            </button>
+          </div>
+
+          {subscription && (
+            <>
+              <label className='formLabel'>Cost</label>
+              <input
+                className='formInputCost'
+                type='number'
+                id='subscriptionPrice'
+                value={subscriptionPrice}
+                onChange={onMutate}
+                min='10'
+                max='100000'
+                required={subscription}
+              />
+              <span> / Month</span>
+            </>
+          )}
+
+          {/* make this minimum commitment area */}
 
           <label className='formLabel'>Service Image</label>
           <p className='imagesInfo'>

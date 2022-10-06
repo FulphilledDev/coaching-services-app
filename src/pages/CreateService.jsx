@@ -21,6 +21,7 @@ function CreateService() {
     const [ formData, setFormData ] = useState({
       // Make category a dropdown menu
       name: "",
+      email: "",
       category: "mental-performance",
       quote: "",
       inPersonCoaching: false,
@@ -28,9 +29,9 @@ function CreateService() {
       hourlyRate: 0,
       subscription: false,
       subscriptionPrice: 0,
+      minCommit: 1,
       yearly: false,
       yearlyPrice: 0,
-      minCommit: 1,
       avgRating: 3.5,
       businessLocation: "",
 		  latitude: 0,
@@ -40,6 +41,7 @@ function CreateService() {
 
     const {
       name,
+      email,
       category,
       quote,
       inPersonCoaching,
@@ -47,9 +49,9 @@ function CreateService() {
       hourlyRate,    
       subscription,
       subscriptionPrice,
+      minCommit,
       yearly,
       yearlyPrice,
-      minCommit,
       avgRating,      
       businessLocation,
       latitude,
@@ -84,6 +86,12 @@ function CreateService() {
 
         setLoading(true)
 
+        // Must enter name and email 
+        if (!name && !email) {
+          setLoading(false)
+          toast.error('Please enter your name and email')
+          return
+        }
 
         // Make sure yearly price is more than subscription price
         if (yearlyPrice >= (subscriptionPrice*12)) {
@@ -103,7 +111,7 @@ function CreateService() {
 
         if (images.length > 1) {
           setLoading(false)
-          toast.error('Max 2 images')
+          toast.error('Select only 1 image')
           return
         }
 
@@ -125,11 +133,6 @@ function CreateService() {
             ? undefined
             : data.results[0]?.formatted_address
 
-        // if (location === undefined || location.includes('undefined')) {
-        //   setLoading(false)
-        //   toast.error('Please enter a correct address')
-        //   return
-        // }
       } else {
         geolocation.lat = latitude
         geolocation.lng = longitude
@@ -195,6 +198,7 @@ function CreateService() {
       formDataCopy.location = businessLocation
       delete formDataCopy.images
       delete formDataCopy.businessLocation
+      !formDataCopy.location && delete formDataCopy.location
       !formDataCopy.yearly && delete formDataCopy.yearlyPrice
       !formDataCopy.subscription && delete formDataCopy.subscriptionPrice
 
@@ -288,7 +292,19 @@ function CreateService() {
             onChange={onMutate}
             maxLength='32'
             minLength='5'
-            required
+            required={name}
+          />
+
+          <label className='formLabel'>Email</label>
+          <input
+            className='formInputEmail'
+            type='text'
+            id='email'
+            value={email}
+            onChange={onMutate}
+            maxLength='50'
+            minLength='5'
+            required={email}
           />
 
           <label className='formLabel'>Quote</label>
@@ -300,7 +316,6 @@ function CreateService() {
             onChange={onMutate}
             maxLength='125'
             minLength='5'
-            required
           />
 
           <label className='formLabel'>Online Coaching</label>
@@ -403,7 +418,7 @@ function CreateService() {
             onChange={onMutate}
             min='10'
             max='10000'
-            required
+            required={hourlyRate}
           />
 
           <label className='formLabel'>Yearly Payments Available</label>
@@ -432,7 +447,7 @@ function CreateService() {
 
           {yearly && (
             <>
-              <label className='formLabel'>Yearly Cost</label>
+              <label className='formLabel'>Cost</label>
               <input
                 className='formInputSmall'
                 type='number'
@@ -443,22 +458,9 @@ function CreateService() {
                 max='100000'
                 required={yearly}
               />
+              <p> / Year</p>
             </>
           )}
-
-          {/* <div className='formPriceDiv'>
-            <input
-              className='formInputSmall'
-              type='number'
-              id='subscriptionPrice'
-              value={subscriptionPrice}
-              onChange={onMutate}
-              min='10'
-              max='10000'
-              required
-            />
-            </div>
-            {subscription === true && <p className='formPriceText'>$ / Month</p>} */}
 
           <label className='formLabel'>Subscriptions Available</label>
           <div className='formButtons'>
@@ -486,7 +488,7 @@ function CreateService() {
 
           {subscription && (
             <>
-              <label className='formLabel'>Subscription Cost</label>
+              <label className='formLabel'>Cost</label>
               <input
                 className='formInputSmall'
                 type='number'
@@ -497,8 +499,24 @@ function CreateService() {
                 max='100000'
                 required={subscription}
               />
+              <p> / Month</p>
             </>
           )}
+
+          {/* Min Commitment */}
+          {/* <div className='formPriceDiv'>
+            <input
+              className='formInputSmall'
+              type='number'
+              id='subscriptionPrice'
+              value={subscriptionPrice}
+              onChange={onMutate}
+              min='10'
+              max='10000'
+              required
+            />
+            </div>
+            {subscription === true && <p className='formPriceText'>$ / Month</p>} */}
 
           <label className='formLabel'>Service Image</label>
           <p className='imagesInfo'>

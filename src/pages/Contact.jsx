@@ -34,7 +34,7 @@ function Contact() {
     return (
         <div className='pageContainer'>
         <header>
-            <p className='pageHeader'>Contact a Coach</p>
+            <p className='contactPageHeader'>Contact a Coach</p>
         </header>
 
         {coach !== null && (

@@ -18,7 +18,11 @@ function SignUp() {
     email: '',
     password: '',
   })
-  const { name, email, password } = formData
+  const { 
+    name, 
+    email, 
+    password 
+  } = formData
 
   const navigate = useNavigate()
 
@@ -62,7 +66,7 @@ function SignUp() {
     <>
       <div className="pageContainer">
         <header>
-          <p className="pageHeader">Welcome Back!</p>
+          <p className="pageHeader">Welcome to Better Coaching Services!</p>
         </header>
 
         <form onSubmit={onSubmit}>

@@ -27,23 +27,7 @@ button {
   border: none;
 }
 
-.input,
-.passwordInput,
-.emailInput,
-.phoneInput,
-.nameInput,
-.textarea {
-  box-shadow: rgba(0, 0, 0, 0.11);
-  border: none;
-  background: #ffffff;
-  border-radius: 3rem;
-  height: 3rem;
-  width: 100%;
-  outline: none;
-  font-family: 'Montserrat', sans-serif;
-  padding: 0 3rem;
-  font-size: 1rem;
-}
+
 
 @media (min-width: 1100px) {
 
@@ -586,7 +570,7 @@ button {
 
 .categoryListingInfoDiv {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   width: 100%;
 }
 
@@ -784,9 +768,8 @@ button {
 
 .leafletContainer {
   width: 100%;
-  height: 200px;
+  height: 300px;
   overflow-x: hidden;
-  margin-bottom: 3rem;
 }
 
 @media (min-width: 1024px) {
@@ -804,6 +787,12 @@ button {
   border-radius: 1rem;
   padding: 0.5rem 1rem;
   font-weight: 600;
+}
+
+.contactPageHeader {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 2rem auto;
 }
 
 .contactListingName {
@@ -971,8 +960,10 @@ button {
 .formInput,
 .formInputAddress,
 .formInputName,
+.formInputEmail,
 .formInputQuote,
 .formInputSmall,
+.formInputCost,
 .formInputFile,
 .formButtonActive {
   padding: 0.9rem 3rem;
@@ -998,8 +989,10 @@ button {
 .formInput,
 .formInputAddress,
 .formInputName,
+.formInputEmail,
 .formInputQuote,
 .formInputSmall,
+.formInputCost,
 .formInputFile {
   border: none;
   outline: none;
@@ -1007,13 +1000,19 @@ button {
 }
 
 .formInputSmall,
+.formInputCost,
 .formInputFile {
   margin-right: 3rem;
   padding: 0.9rem 0.7rem;
   text-align: center;
 }
 
+.formInputCost input{
+  margin-right: 0px !important
+}
+
 .formInputName,
+.formInputEmail,
 .formInputQuote {
   padding: 0.9rem 1rem;
   width: 90%;
@@ -1058,17 +1057,3 @@ button {
 .createListingButton {
   margin-top: 5rem;
 }
-
-/* .offers {
-  margin-bottom: 10rem;
-}
-
-.offerBadge {
-  padding: 0.25rem 0.5rem;
-  background-color: #000000;
-  color: #ffffff;
-  border-radius: 1rem;
-  margin-left: 1rem;
-  font-size: 0.8rem;
-  opacity: 0.75;
-} */
