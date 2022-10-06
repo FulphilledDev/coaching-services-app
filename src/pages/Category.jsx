@@ -129,9 +129,11 @@ function Category() {
             <br />
             <br />
             {lastFetchedService && (
+                <div className='loadMoreDiv'>
                 <p className='loadMore' onClick={onFetchMoreServices}>
                     Load More
                 </p>
+                </div>
             )}
             </>
             ) : ( 

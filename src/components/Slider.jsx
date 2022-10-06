@@ -85,7 +85,7 @@ function Slider() {
                             .concat(' / Month')
                         : <></> }
                 </p>
-                <p className='swiperListingType'>
+                <p className='listingType'>
                     {data.category}
                 </p>
                 {/* Add conditional for "avgRating" and "numberOfClients" (still need to add to data profile, database, Review form for clients? (Maybe just comment section with option to select stars), etc) */}
