@@ -387,179 +387,133 @@ function Service() {
             >
                 Contact Coach
             </Link>
-            </>
-        )}
+            </>)}
+
         
-        {/* { review.length === 0 ? (
-            <div className='loadMoreDiv'>
-                <p 
-                    className='loadMore' 
-                    // onClick={<ReviewItem />}
-                >
-                        Leave a Review
-                </p>
-                </div>
-        ) : <></>} */}
-        <br />
-
-        <div onClick={onToggle} className={className === 'primaryButton' ? 'primaryButton' : 'reviewActiveButton'}>Leave a Review</div>
-        { toggle === "open" 
-        ? (<>
-            <form onSubmit={onSubmit} className='serviceReviewForm'>
-                {/* make this autofill */}
-                <div className="serviceReviewFormDiv">
-                <label className='formLabel'>Name</label>
-                <input
-                    className='formInputName'
-                    type='text'
-                    id='name'
-                    value={name}
-                    onChange={onMutate}
-                    maxLength='50'
-                    minLength='5'
-                    required={name}
-                />
-                </div>
-
-                <div className="serviceReviewFormDiv">
-                <label className='formLabel'>Type of Coaching</label>
-                <div className='reviewFormButtons'>
-                    <button
-                        className={inPersonCoaching ? 'reviewFormButtonActive' : 'reviewFormButton'}
-                        type='button'
-                        id='inPersonCoaching'
-                        value={true}
-                        onClick={inPersonToggle}
-                    >
-                        In-Person Coaching
-                    </button>
-                    <button
-                        className={onlineCoaching ? 'reviewFormButtonActive' : 'reviewFormButton'}
-                        type='button'
-                        id='onlineCoaching'
-                        value={true}
-                        onClick={onlineToggle}
-                    >
-                        Online Coaching
-                    </button>
-                </div>
-                </div>
-
-                <div className="serviceReviewFormDiv">
-                <label className='formLabel'>Payments</label>
-                <div className='reviewFormButtons'>
-                    <button
-                        className={yearly ? 'reviewFormButtonActive' : 'reviewFormButton'}
-                        type='button'
-                        id='yearly'
-                        value={true}
-                        onClick={yearlyToggle}
-                    >
-                        Yearly
-                    </button>
-                    <button
-                        className={subscription ? 'reviewFormButtonActive' : 'reviewFormButton'}
-                        type='button'
-                        id='subscription'
-                        value={true}
-                        onClick={subscriptionToggle}
-                    >
-                        Subscription
-                    </button>
-                </div>
-                </div>
-
-                <div className="serviceReviewFormDiv">
-                    <label className='formLabel'>Time Worked Together</label>
-                    <input
-                        className='reviewTimeInputSmall'
-                        type='number'
-                        id='monthsWorkedWith'
-                        value={monthsWorkedWith}
-                        onChange={onMutate}
-                        min='10'
-                        max='100'
-                        required={monthsWorkedWith}
-                    />
-                </div>
-
-
-                {/* Add conditional for "avgRating" and "numberOfClients" (still need to add to reviewData profile, database, Review form for clients? (Maybe just comment section with option to select stars), etc) */}
-                <div className="serviceReviewFormDiv">
-                    <label className='formLabel'>Rating <span className='starReviews'>(1 - 10)</span></label>
-                    
-                    <div className="serviceStarRatingText">  
-                        <p className='starRatings'>
-                            <input
-                                className='reviewInputSmall'
-                                type='number'
-                                id='rating'
-                                value={rating}
-                                onChange={onMutate}
-                                min='1'
-                                max='10'
-                                required={rating}
-                            />
-                            {/* <img src={starFillIcon} alt="star rating" className='starIcon starIconOne'/> */}
-                        </p>
-                    </div>
-                </div>
-                
-                <div className="serviceReviewFormDiv">
-                <div className='serviceReviewMessageDiv'>
-                <textarea
-                        name='message'
-                        id='message'
-                        className='textarea'
-                        value={message}
-                        onChange={onChange}
-                    ></textarea>
-                </div>
-                </div>
-
-                <button type='submit' className='primaryButton createReviewButton'>
-                    Submit Review
-                </button>
-            </form>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            </>
-            )
-            
-        : (<></>)}
-        {/* { review && review.length > 0 ? (
-            <>
-            <main>
-                <ul className="categoryListings">
-                    {review.map((review) => (
-                        <ReviewItem 
-                            review={review.data} 
-                            id={review.id}
-                            key={review.id} 
+            <div onClick={onToggle} className={className === 'primaryButton' ? 'primaryButton' : 'reviewActiveButton'}>Leave a Review</div>
+                { toggle === "open" 
+                ? (<>
+                    <form onSubmit={onSubmit} className='serviceReviewForm'>
+                        {/* make this autofill */}
+                        <div className="serviceReviewFormDiv">
+                        <label className='formLabel'>Name</label>
+                        <input
+                            className='formInputName'
+                            type='text'
+                            id='name'
+                            value={name}
+                            onChange={onMutate}
+                            maxLength='50'
+                            minLength='5'
+                            required={name}
                         />
-                    ))}
-                </ul>
-            </main>
+                        </div>
 
-             {review.length > 4 && lastFetchedReview ? (
-                <div className='loadMoreDiv'>
-                <p className='loadMore' onClick={onFetchMoreReviews}>
-                    Load More
-                </p>
-                </div>
-            ): <><p>No more reviews are available at this time.</p></>}
+                        <div className="serviceReviewFormDiv">
+                        <label className='formLabel'>Type of Coaching</label>
+                        <div className='reviewFormButtons'>
+                            <button
+                                className={inPersonCoaching ? 'reviewFormButtonActive' : 'reviewFormButton'}
+                                type='button'
+                                id='inPersonCoaching'
+                                value={true}
+                                onClick={inPersonToggle}
+                            >
+                                In-Person Coaching
+                            </button>
+                            <button
+                                className={onlineCoaching ? 'reviewFormButtonActive' : 'reviewFormButton'}
+                                type='button'
+                                id='onlineCoaching'
+                                value={true}
+                                onClick={onlineToggle}
+                            >
+                                Online Coaching
+                            </button>
+                        </div>
+                        </div>
 
-            <br />
-            <br />
-            </>
-            ) : ( 
-                <p>No reviews yet.</p>
-        )} */}
+                        <div className="serviceReviewFormDiv">
+                        <label className='formLabel'>Payments</label>
+                        <div className='reviewFormButtons'>
+                            <button
+                                className={yearly ? 'reviewFormButtonActive' : 'reviewFormButton'}
+                                type='button'
+                                id='yearly'
+                                value={true}
+                                onClick={yearlyToggle}
+                            >
+                                Yearly
+                            </button>
+                            <button
+                                className={subscription ? 'reviewFormButtonActive' : 'reviewFormButton'}
+                                type='button'
+                                id='subscription'
+                                value={true}
+                                onClick={subscriptionToggle}
+                            >
+                                Subscription
+                            </button>
+                        </div>
+                        </div>
 
-        
+                        <div className="serviceReviewFormDiv">
+                            <label className='formLabel'>Time Worked Together</label>
+                            <input
+                                className='reviewTimeInputSmall'
+                                type='number'
+                                id='monthsWorkedWith'
+                                value={monthsWorkedWith}
+                                onChange={onMutate}
+                                min='10'
+                                max='100'
+                                required={monthsWorkedWith}
+                            />
+                        </div>
+
+
+                        {/* Add conditional for "avgRating" and "numberOfClients" (still need to add to reviewData profile, database, Review form for clients? (Maybe just comment section with option to select stars), etc) */}
+                        <div className="serviceReviewFormDiv">
+                            <label className='formLabel'>Rating <span className='starReviews'>(1 - 10)</span></label>
+                            
+                            <div className="serviceStarRatingText">  
+                                <p className='starRatings'>
+                                    <input
+                                        className='reviewInputSmall'
+                                        type='number'
+                                        id='rating'
+                                        value={rating}
+                                        onChange={onMutate}
+                                        min='1'
+                                        max='10'
+                                        required={rating}
+                                    />
+                                    {/* <img src={starFillIcon} alt="star rating" className='starIcon starIconOne'/> */}
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div className="serviceReviewFormDiv">
+                        <div className='serviceReviewMessageDiv'>
+                        <textarea
+                                name='message'
+                                id='message'
+                                className='textarea'
+                                value={message}
+                                onChange={onChange}
+                            ></textarea>
+                        </div>
+                        </div>
+
+                        <button type='submit' className='primaryButton createReviewButton'>
+                            Submit Review
+                        </button>
+                    </form>
+                    
+                    </>)
+                    
+                : (<></>)
+                }
         </>  
     )
 }
