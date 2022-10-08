@@ -1165,6 +1165,98 @@ button {
   margin-top: 5rem;
 }
 
+.reviewsDisplay {
+  padding: 0;
+}
+
+.reviewDisplay {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  position: relative;
+  background: #ffffff;
+  border-radius: 1.5rem;
+}
+
+.reviewDetails {
+  width: 80%;
+  margin-left: 1rem;
+}
+
+.reviewHeaderDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.reviewName {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-left: none;
+}
+
+.reviewName p {
+  margin-block-end: none;
+}
+
+.ratingDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 1rem;
+}
+
+.ratingDiv {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.reviewRating {
+  font-size: 1.25rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  color: #f6ff00;
+  background-color: #000000;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.reviewCoachingType,
+.reviewPriceType {
+  background-color: #6c6c6c;
+  color: #ffffff;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin: 1.25rem .5rem;
+  padding: 0.25rem 0.5rem;
+  height: 1.5rem;
+
+}
+
+.reviewPriceType {
+  background-color: #000000;
+  margin: 1.25rem 0;
+}
+
+.reviewMessage {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: none;
+  padding: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  list-style-type: none;
+}
+
 @media (max-width: 525px) {
   .serviceReviewForm {
     width: 90%;
