@@ -587,6 +587,7 @@ button {
   width: 100%;
   padding-left: none;
   margin-left: none;
+  margin-top: 0.5rem;
 
 }
 .starIcon img{
@@ -598,13 +599,9 @@ button {
 @media (min-width: 525px){
   .starRatings{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
   }
-}
-
-.starReviews {
-  margin-left: 1rem;
 }
 
 .categoryListingInfoText {
@@ -1066,6 +1063,105 @@ button {
   margin-right: 1rem;
 }
 
+.reviewFormButtons {
+  display: flex;
+  justify-content: center;
+}
+
+.reviewFormButton {
+  padding: 0.9rem 3rem;
+  background-color: #ffffff;
+  font-weight: 600;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin: 0.5rem .25rem;
+}
+
+.reviewFormButtonActive {
+  padding: 0.9rem 3rem;
+  background-color: #006eff;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin: 0.5rem 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.reviewInputSmall,
+.reviewTimeInputSmall {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  border: none;
+}
+
+.reviewTimeInputSmall {
+  margin-top: 0.5rem;
+  height: 50px;
+  width: 85px;
+}
+
+.serviceReviewForm {
+  width: 65%;
+  margin: 1rem auto;
+  margin-bottom: 4rem;
+  border-radius: 1.5rem;
+  background: rgba(187, 187, 187, 0.7);
+  border: 3px;
+}
+
+.serviceReviewFormDiv {
+  display: flex;
+  flex-direction: column;
+  padding: .25rem 1rem;
+}
+
+.serviceReviewMessageDiv {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.serviceStarRatingText {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.serviceStarRatingText p {
+  width: 100%;
+}
+
+.createReviewButton {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .createListingButton {
   margin-top: 5rem;
+}
+
+@media (max-width: 525px) {
+  .serviceReviewForm {
+    width: 90%;
+  }
+
+  .serviceReviewFormDiv {
+    margin: 0 auto;
+  }
+
+  .reviewInputSmall,
+  .reviewTimeInputSmall {
+    width: 75px;
+    height: 50px;
+  }
 }

@@ -73,7 +73,7 @@ function EditService() {
         }
     })
 
-    // Fetch listing to edit
+    // Fetch service to edit
     useEffect(() => {
         setLoading(true)
         const fetchService = async () => {
@@ -81,7 +81,11 @@ function EditService() {
             const docSnap = await getDoc(docRef)
             if (docSnap.exists()) {
                 setService(docSnap.data())
-                setFormData({ ...docSnap.data(), businessLocation: docSnap.data().businessLocation })
+                setFormData(
+                  { ...docSnap.data(), 
+                    businessLocation: docSnap.data().businessLocation 
+                  }
+                )
                 setLoading(false)
             } else {
                 navigate('/')

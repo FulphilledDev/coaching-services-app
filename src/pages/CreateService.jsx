@@ -17,9 +17,7 @@ import Spinner from '../components/Spinner'
 function CreateService() {
     const [ geolocationEnabled, setGeolocationEnabled ] = useState(true)
     const [ loading, setLoading ] = useState(false)
-
     const [ formData, setFormData ] = useState({
-      // Make category a dropdown menu
       name: "",
       email: "",
       category: "mental-performance",
@@ -32,6 +30,7 @@ function CreateService() {
       minCommit: 1,
       yearly: false,
       yearlyPrice: 0,
+      reviews: [],
       avgRating: 3.5,
       businessLocation: "",
 		  latitude: 0,
@@ -52,6 +51,7 @@ function CreateService() {
       minCommit,
       yearly,
       yearlyPrice,
+      reviews,
       avgRating,      
       businessLocation,
       latitude,
@@ -97,8 +97,6 @@ function CreateService() {
         if (yearlyPrice >= (subscriptionPrice*12)) {
           setLoading(false)
           toast.error('Check that yearly price is greater than subscription price per year')
-          console.log(yearlyPrice)
-          console.log(subscriptionPrice)
           return
         }
 

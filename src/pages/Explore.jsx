@@ -6,6 +6,7 @@ import yesWeCan from '../assets/jpg/yesWeCan.jpg'
 
 function Explore() {
   return (
+    <>
     <div className='Explore'>
       <header>
         <p className="pageHeader explorePageHeader">Explore</p>
@@ -43,6 +44,7 @@ function Explore() {
           </div>
         </main>
     </div>
+    </>
   )
 }
 
