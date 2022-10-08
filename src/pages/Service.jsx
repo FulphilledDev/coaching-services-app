@@ -48,25 +48,25 @@ function Service() {
 
     ///////////////////////
     const [ reviewData, setReviewData ] = useState({
-        name: "",
-        onlineCoaching: false,
-        inPersonCoaching: false,
-        yearly: false,
-        subscription: false,
-        monthsWorkedWith: 0,
-        rating: 0,
-        message: ""
+        reviewName: "",
+        reviewOnlineCoaching: false,
+        reviewInPersonCoaching: false,
+        reviewYearly: false,
+        reviewSubscription: false,
+        reviewMonthsWorkedWith: 0,
+        reviewRating: 0,
+        reviewMessage: ""
     })
 
     const {
-        name,
-        onlineCoaching,
-        inPersonCoaching,
-        yearly, 
-        subscription,
-        monthsWorkedWith,
-        rating,
-        message
+        reviewName,
+        reviewOnlineCoaching,
+        reviewInPersonCoaching,
+        reviewYearly, 
+        reviewSubscription,
+        reviewMonthsWorkedWith,
+        reviewRating,
+        reviewMessage
     } = reviewData
 
     ///////////////////////////////
@@ -171,27 +171,27 @@ function Service() {
         setLoading(true)
 
         // Must enter name and email 
-        if (!name && !rating) {
+        if (!reviewName && !reviewRating) {
           setLoading(false)
-          toast.error('Please enter your name and email')
+          toast.error('Please enter your name and a rating')
           return
         }
 
         // Make sure yearly price is more than subscription price
-        if (!yearly && !subscription) {
+        if (!reviewYearly && !reviewSubscription) {
           setLoading(false)
           toast.error('Please select one payment type.')
           return
         }
 
-        if (yearly && subscription) {
+        if (reviewYearly && reviewSubscription) {
           setLoading(false)
           toast.error('Please select one payment type.')
           return
         }
 
         // Must select inPerson or Online Coaching
-        if (!inPersonCoaching && !onlineCoaching) {
+        if (!reviewInPersonCoaching && !reviewOnlineCoaching) {
           setLoading(false)
           toast.error('Must select either Online or In Person Coaching')
           return
@@ -400,12 +400,12 @@ function Service() {
                         <input
                             className='formInputName'
                             type='text'
-                            id='name'
-                            value={name}
+                            id='reviewName'
+                            value={reviewName}
                             onChange={onMutate}
                             maxLength='50'
                             minLength='5'
-                            required={name}
+                            required={reviewName}
                         />
                         </div>
 
@@ -413,18 +413,18 @@ function Service() {
                         <label className='formLabel'>Type of Coaching</label>
                         <div className='reviewFormButtons'>
                             <button
-                                className={inPersonCoaching ? 'reviewFormButtonActive' : 'reviewFormButton'}
+                                className={reviewInPersonCoaching ? 'reviewFormButtonActive' : 'reviewFormButton'}
                                 type='button'
-                                id='inPersonCoaching'
+                                id='reviewInPersonCoaching'
                                 value={true}
                                 onClick={inPersonToggle}
                             >
                                 In-Person Coaching
                             </button>
                             <button
-                                className={onlineCoaching ? 'reviewFormButtonActive' : 'reviewFormButton'}
+                                className={reviewOnlineCoaching ? 'reviewFormButtonActive' : 'reviewFormButton'}
                                 type='button'
-                                id='onlineCoaching'
+                                id='reviewOnlineCoaching'
                                 value={true}
                                 onClick={onlineToggle}
                             >
@@ -437,18 +437,18 @@ function Service() {
                         <label className='formLabel'>Payments</label>
                         <div className='reviewFormButtons'>
                             <button
-                                className={yearly ? 'reviewFormButtonActive' : 'reviewFormButton'}
+                                className={reviewYearly ? 'reviewFormButtonActive' : 'reviewFormButton'}
                                 type='button'
-                                id='yearly'
+                                id='reviewYearly'
                                 value={true}
                                 onClick={yearlyToggle}
                             >
                                 Yearly
                             </button>
                             <button
-                                className={subscription ? 'reviewFormButtonActive' : 'reviewFormButton'}
+                                className={reviewSubscription ? 'reviewFormButtonActive' : 'reviewFormButton'}
                                 type='button'
-                                id='subscription'
+                                id='reviewSubscription'
                                 value={true}
                                 onClick={subscriptionToggle}
                             >
@@ -462,12 +462,12 @@ function Service() {
                             <input
                                 className='reviewTimeInputSmall'
                                 type='number'
-                                id='monthsWorkedWith'
-                                value={monthsWorkedWith}
+                                id='reviewMonthsWorkedWith'
+                                value={reviewMonthsWorkedWith}
                                 onChange={onMutate}
-                                min='10'
-                                max='100'
-                                required={monthsWorkedWith}
+                                min='1'
+                                max='12'
+                                required={reviewMonthsWorkedWith}
                             />
                         </div>
 
@@ -481,12 +481,12 @@ function Service() {
                                     <input
                                         className='reviewInputSmall'
                                         type='number'
-                                        id='rating'
-                                        value={rating}
+                                        id='reviewRating'
+                                        value={reviewRating}
                                         onChange={onMutate}
                                         min='1'
                                         max='10'
-                                        required={rating}
+                                        required={reviewRating}
                                     />
                                     {/* <img src={starFillIcon} alt="star rating" className='starIcon starIconOne'/> */}
                                 </p>
@@ -496,10 +496,10 @@ function Service() {
                         <div className="serviceReviewFormDiv">
                         <div className='serviceReviewMessageDiv'>
                         <textarea
-                                name='message'
-                                id='message'
+                                name='reviewMessage'
+                                id='reviewMessage'
                                 className='textarea'
-                                value={message}
+                                value={reviewMessage}
                                 onChange={onChange}
                             ></textarea>
                         </div>
