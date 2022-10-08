@@ -1165,6 +1165,11 @@ button {
   margin-top: 5rem;
 }
 
+.noReviewsPar {
+  display: flex;
+  justify-content: center;
+}
+
 .reviewsDisplay {
   padding: 0;
 }

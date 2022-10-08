@@ -362,6 +362,7 @@ function Service() {
         { service.reviews && service.reviews.length > 0 ? (
             <>
             <main>
+                <p className="serviceListingLocation">Reviews</p>
                 <ul className="reviewsDisplay">
                     {service.reviews.map((review) => (
                         <div className='reviewDisplay'>
@@ -409,7 +410,7 @@ function Service() {
             ): <></>} */}
             </>
             ) : ( 
-                <p>No reviews have been submitted.</p>
+                <p className='noReviewsPar'>No reviews have been submitted.</p>
             )}
 
 
