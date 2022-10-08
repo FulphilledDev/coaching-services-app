@@ -61,6 +61,21 @@ button {
   justify-content: center;
 }
 
+.reviewActiveButton {
+  cursor: pointer;
+  background: #000000;
+  border-radius: 1rem;
+  padding: 0.85rem 2rem;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.25rem;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .removeIcon {
   cursor: pointer;
   position: absolute;

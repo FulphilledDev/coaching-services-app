@@ -30,6 +30,7 @@ function Service() {
     const [service, setService] = useState(null)
     // const [ lastFetchedReview, setLastFetchedReview ] = useState(null)
     const [ toggle, setToggle ] = useState('closed')
+    const [ className, setClassName ] = useState('primaryButton')
     
 
     const [loading, setLoading] = useState(true)
@@ -106,10 +107,12 @@ function Service() {
     // Pop up error if current user is trying to leave a comment on own service
     /////////////////////////////////
     const onToggle = () => {
-        if (toggle === 'closed') {
+        if ((toggle === 'closed') && (className === 'primaryButton')) {
             setToggle('open')
+            setClassName('reviewActiveButton')
         } else {
             setToggle('closed')
+            setClassName('primaryButton')
         }
     }
 
@@ -399,7 +402,7 @@ function Service() {
         ) : <></>} */}
         <br />
 
-        <div onClick={onToggle} className='primaryButton'>Leave a Review</div>
+        <div onClick={onToggle} className={className === 'primaryButton' ? 'primaryButton' : 'reviewActiveButton'}>Leave a Review</div>
         { toggle === "open" 
         ? (<>
             <form onSubmit={onSubmit} className='serviceReviewForm'>
