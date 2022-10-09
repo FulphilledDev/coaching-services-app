@@ -194,6 +194,11 @@ function Service() {
           return
         }
 
+        //////////////////////////////////////////////////////////////////
+        //
+        // Submit new review: Update serviceRef (serviceId doc) while keeping all previous data from current service, and add to reviews object all previous reviews , with new reviewData
+        //
+        //////////////////////////////////////////////////////////////////
         const serviceRef = doc(db, 'coachingServices', params.serviceId)
         await updateDoc(serviceRef, {
             ...service,
@@ -207,12 +212,6 @@ function Service() {
         // setLoading(false)
     }
 
-    /////////////////////////////////
-
-    // Get all reviews for serviceId
-
-    ////////////////////////////////
-
     //////////////////////////
 
     // Fetch More Reviews
@@ -222,9 +221,9 @@ function Service() {
 
 
     //////////////////////
-
+    //
     // Spinner
-
+    //
     //////////////////////
 
     if(loading) {
@@ -233,7 +232,7 @@ function Service() {
 
     return (
         <>
-        <li className='categoryListing'>
+        <li className='servicePageCard'>
             <div
                 className='shareIconDiv'
                 onClick={() => {
@@ -249,12 +248,12 @@ function Service() {
 
             {shareLinkCopied && <p className='linkCopied'>Link Copied!</p>}
         
-            <img src={service.imgUrls[0]} alt={service.name} className='categoryListingImg' />
-            <div className='categoryListingDetails'>
-                <p className="categoryListingName">
+            <img src={service.imgUrls[0]} alt={service.name} className='servicePageImg' />
+            <div className='servicePageDetails'>
+                <p className="servicePageName">
                      {service.name ? service.name : <></> }
                 </p>
-                <p className='categoryListingPrice'> 
+                <p className='servicePagePrice'> 
                     {service.yearly 
                         ? service.yearlyPrice
                             .toString()
@@ -271,15 +270,17 @@ function Service() {
                             .concat(' / Month')
                         : <></> }
                 </p>
-                <p className='listingType'>
-                    {service.category}
-                </p>
-                {service.yearly && (
-                <p className='discountPrice'>
-                    Save ${((service.subscriptionPrice)*12) - service.yearlyPrice} / Year
-                </p>
-                )}
-                <ul className='listingDetailsList'>
+                <div className="servicePageTypeSavingsDiv">
+                    <p className='servicePageType'>
+                        {service.category}
+                    </p>
+                    {service.yearly && (
+                    <p className='servicePageSavingsPrice'>
+                        Save ${((service.subscriptionPrice)*12) - service.yearlyPrice} / Year
+                    </p>
+                    )}
+                </div>
+                <ul className='servicePageDetailsList'>
                     <li>
                         {service.minCommit >= 1
                             ? `${service.minCommit} Month Minimum Commitment`
@@ -290,12 +291,12 @@ function Service() {
                     </li>
                     <li>{service.inPersonCoaching && 
                         <><FaCheck 
-                            className='listingDetailsFaCheck'/> In Person Coaching Available
+                            className='servicePageDetailsFaCheck'/> In Person Coaching Available
                         </>}
                     </li>
                     <li>{service.onlineCoaching && 
                         <><FaCheck 
-                            className='listingDetailsFaCheck'/> Online Coaching Available
+                            className='servicePageDetailsFaCheck'/> Online Coaching Available
                         </>}
                     </li>
                 </ul>

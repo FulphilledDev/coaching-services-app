@@ -8,20 +8,14 @@ import starFillIcon from '../assets/svg/starFillIcon.svg'
 
 function ServiceItem({ service, id, onDelete, onEdit }) {
   return (
-    <li className='categoryListing'>
+    <li className='serviceItemCard'>
         <Link to={`/category/${service.category}/${id}`} className='categoryListingLink'>
-            <img src={service.imgUrls[0]} alt={service.name} className='categoryListingImg' />
-            <div className="categoryListingDetails">
-                <p className="categoryListingQuote">
-                  {service.quote 
-                    ? `"${service.quote}"`
-                    : <></>
-                  }
-                </p>
-                <p className="categoryListingName">
+            <img src={service.imgUrls[0]} alt={service.name} className='categoryServiceImg' />
+            <div className="categoryServiceDetails">
+                <p className="categoryServiceName">
                     {service.name}
                 </p>
-                <p className="categoryListingPrice">
+                <p className="categoryServicePrice">
                     {service.yearly 
                         ? service.yearlyPrice
                             .toString()
@@ -38,20 +32,26 @@ function ServiceItem({ service, id, onDelete, onEdit }) {
                             .concat(' / Month')
                         : <></> }
                 </p>
+                <p className="categoryServiceQuote">
+                  {service.quote 
+                    ? `"${service.quote}"`
+                    : <></>
+                  }
+                </p>
                 {/* Add conditional for "avgRating" and "numberOfClients" (still need to add to service profile, database, Review form for clients? (Maybe just comment section with option to select stars), etc) */}
-                <div className="categoryListingInfoDiv">
-                    <div className="categoryListingInfoText">
+                <div className="categoryServiceRatingDiv">
+                    <div className="">
                         {service.minCommit === 0 
                             ? 'No Ratings Yet' 
                             : <>
-                                <p className='starRatings'>
+                                <p className='categoryServiceStarRatings'>
                                     <img src={starFillIcon} alt="star rating" className='starIcon starIconOne'/>
                                     <img src={starFillIcon} alt="star rating" className='starIcon'/>
                                     <img src={starFillIcon} alt="star rating" className='starIcon'/>
                                     <img src={starHalfIcon} alt="star rating" className='starIcon'/>
-                                    <span className='starReviews'>
+                                    <p className='categoryServiceStarReviews'>
                                         {service.minCommit > 1 ? `${service.minCommit} Reviews` : '1 Review' } 
-                                    </span>
+                                    </p>
                                 </p>
                                  
                             </>

@@ -105,7 +105,7 @@ function Category() {
   return (
     <div className='category'>
         <header>
-            <p className="pageHeader">
+            <p className="categoryHeader">
                 {params.categoryName.replace((/(^\w)|([-\s]\w)/g), match => match.toUpperCase())}
             </p>
         </header>
@@ -115,7 +115,7 @@ function Category() {
         ) : coachingServices && coachingServices.length > 0 ? (
             <>
             <main>
-                <ul className="categoryListings">
+                
                     {coachingServices.map((service) => (
                         <ServiceItem 
                             service={service.data} 
@@ -123,16 +123,16 @@ function Category() {
                             key={service.id} 
                         />
                     ))}
-                </ul>
+                
             </main>
 
             <br />
             <br />
             {coachingServices.length > 2 && lastFetchedService ? (
-                <div className='loadMoreDiv'>
-                <p className='loadMore' onClick={onFetchMoreServices}>
-                    Load More
-                </p>
+                <div className='categoryLoadMoreDiv'>
+                    <p className='loadMore' onClick={onFetchMoreServices}>
+                        Load More
+                    </p>
                 </div>
             ): <></>}
             </>

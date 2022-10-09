@@ -50,7 +50,7 @@ function Slider() {
   return (
     services.length >= 1 && (
       <>
-        <p className='exploreHeading'>Most Recent Additions</p>
+        <p className='swiperHeading'>Most Recent Additions</p>
 
         <Swiper 
           slidesPerView={1} 
@@ -62,42 +62,42 @@ function Slider() {
               key={id}
               onClick={() => navigate(`/category/${data.category}/${id}`)}
               >
-              <li className='swiperCategoryListing'>
-              <img src={data.imgUrls[0]} alt={data.name} className='swiperCategoryListingImg' />
-              <div className="swiperListingDetails">
-                <p className="swiperListingQuote">
-                  {data.quote 
-                    ? `"${data.quote}"`
-                    : <></>
-                  }
-                </p>
-                <p className="swiperListingName">
-                    {data.name}
-                </p>
-                <p className="swiperListingPrice">
-                    {data.yearly 
-                        ? data.yearlyPrice
-                            .toString()
-                            .padStart(data.yearlyPrice.length+1, '$')
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                            .concat(' / Year')
-                        : <></> }
-                    { data.yearly && data.subscription ? ' or ' : <></>}
-                    {data.subscription 
-                        ? data.subscriptionPrice
-                            .toString()
-                            .padStart(data.subscriptionPrice.length+1, '$')
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                            .concat(' / Month')
-                        : <></> }
-                </p>
-                <div className="listingTypeDive">
-                <p className='listingType'>
-                    {data.category}
-                </p>
+              <li className='swiperExploreServiceCard'>
+                <img src={data.imgUrls[0]} alt={data.name} className='swiperExploreServiceImg' />
+                <div className="swiperServiceDetails">
+                  <p className="swiperServiceName">
+                      {data.name}
+                  </p>
+                  <p className="swiperServicePrice">
+                      {data.yearly 
+                          ? data.yearlyPrice
+                              .toString()
+                              .padStart(data.yearlyPrice.length+1, '$')
+                              .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                              .concat(' / Year')
+                          : <></> }
+                      { data.yearly && data.subscription ? ' or ' : <></>}
+                      {data.subscription 
+                          ? data.subscriptionPrice
+                              .toString()
+                              .padStart(data.subscriptionPrice.length+1, '$')
+                              .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                              .concat(' / Month')
+                          : <></> }
+                  </p>
+                  <div className="listingTypeDive">
+                    <p className='swiperServiceType'>
+                        {data.category}
+                    </p>
+                  </div>
+                  <p className="swiperServiceQuote">
+                    {data.quote 
+                      ? `"${data.quote}"`
+                      : <></>
+                    }
+                  </p>
+                  {/* Add conditional for "avgRating" and "numberOfClients" (still need to add to data profile, database, Review form for clients? (Maybe just comment section with option to select stars), etc) */}
                 </div>
-                {/* Add conditional for "avgRating" and "numberOfClients" (still need to add to data profile, database, Review form for clients? (Maybe just comment section with option to select stars), etc) */}
-              </div>
               </li>
               </SwiperSlide>
           ))}

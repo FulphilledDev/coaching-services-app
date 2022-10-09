@@ -118,7 +118,7 @@ function Profile() {
 
       <main>
         <div className="profileDetailsHeader">
-          <p className="profileDetailsText">Personal Details</p>
+          <p>Personal Details</p>
           <p className="changePersonalDetails" onClick={() => {
             changeDetails && onSubmit()
             setChangeDetails((prevState) => !prevState)
@@ -155,9 +155,9 @@ function Profile() {
         </Link>
 
         {!loading && services?.length > 0 && (
-            <>
-                <p className='listingText'>Your Services</p>
-                <ul className='listingsList'>
+            <div className='profileServiceList'>
+                <p>Your Services</p>
+                <ul className='profileServices'>
                     {services.map((service) => (
                         <ServiceItem
                             key={service.id}
@@ -168,7 +168,7 @@ function Profile() {
                         />
                     ))}
                 </ul>
-            </>
+            </div>
         )}
       </main>
     </div>
