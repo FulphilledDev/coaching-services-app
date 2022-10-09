@@ -60,7 +60,7 @@ function Contact() {
                 <a
                     href={`mailto:${coach.email}?Subject=${searchParams.get('coachName')}&body=${message}`}
                 > 
-                {/* ^^ What is 'listingName' supposed to be instead...
+                {/* ^^ What is 'serviceName' supposed to be instead...
                 ... The params set in the link at the bottom of Service Page for Contact Coach Button */}
                     <button type='button' className='primaryButton'>
                         Send Message

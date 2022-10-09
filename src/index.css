@@ -27,100 +27,17 @@ button {
   border: none;
 }
 
-
-
-@media (min-width: 1100px) {
-
-  .input,
-  .passwordInput,
-  .emailInput,
-  .nameInput,
-  .textarea {
-    padding: 0 5rem;
-  }
-}
-
 .textarea {
   padding: 1rem 1.5rem;
   height: 300px;
   border-radius: 1rem;
 }
 
-/*
 
-    BUTTONS
-
-*/
-
-.primaryButton {
-  cursor: pointer;
-  background: #006eff;
-  border-radius: 1rem;
-  padding: 0.85rem 2rem;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 1.25rem;
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.reviewActiveButton {
-  cursor: pointer;
-  background: #000000;
-  border-radius: 1rem;
-  padding: 0.85rem 2rem;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 1.25rem;
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.signInButton,
-.signUpButton {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3rem;
-  height: 3rem;
-  background-color: #006eff;
-  border-radius: 50%;
-}
-
-.removeIcon {
-  cursor: pointer;
-  position: absolute;
-  top: 3%;
-  right: -2%;
-  margin-right: 2rem;
-
-}
-
-.editIcon {
-  cursor: pointer;
-  position: absolute;
-  top: 3%;
-  right: 20px;
-  margin-right: 2rem;
-}
-
-.editServiceHeading {
-    font-size: 2rem;
-    font-weight: 800;
-    margin: 2rem auto !important;
-}
 
 .pageContainer,
 .offers,
 .profile,
-.listingDetails,
 .category,
 .profileServiceList
 .explore {
@@ -163,12 +80,11 @@ button {
   }
 }
 
-.pageHeader,
-.categoryHeader {
-  font-size: 2rem;
-  font-weight: 800;
-  margin: 2rem 1rem 0 1rem;
-}
+/* 
+
+    NAVBAR
+
+*/
 
 .navbar {
   position: fixed;
@@ -215,6 +131,12 @@ button {
 .navbarListItemNameActive {
   color: #2c2c2c;
 }
+
+/*
+
+    SIGN UP & SIGN IN PAGES
+
+*/
 
 .nameInput {
   margin-bottom: 2rem;
@@ -314,6 +236,23 @@ button {
     HEADINGS
 
 */
+
+.profileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.categoryHeader, 
+.profileHeader,
+.exploreHeader,
+.createServiceHeader,
+.editServiceHeader {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 2rem 0 0 0;
+}
+
 .exploreHeading,
 .swiperHeading,
 .exploreCategoryHeading {
@@ -321,10 +260,9 @@ button {
   margin: 1rem 1rem;
 }
 
-.createServiceHeading {
-  font-size: 2rem;
-  font-weight: 800;
-  margin: 2rem 0 1rem 0;
+.exploreHeader,
+.profileHeading {
+  margin-left: 1rem;
 }
 
 .exploreParagraphHeading {
@@ -337,7 +275,7 @@ button {
 
 /*
 
-    SERVICE CARDS
+    SERVICE CARDS (& SWIPER)
 
 */
 
@@ -353,7 +291,6 @@ button {
 .swiperExploreServiceCard,
 .serviceItemCard, 
 .servicePageCard,
-
 .servicePageAdditionalDetails {
   display: flex;
   justify-content: flex-start;
@@ -418,12 +355,6 @@ button {
 
 .servicePageDetailsFaCheck {
   color: #03c800;
-}
-
-.listingDetailsList li {
-  margin: 0.3rem 0;
-  font-weight: 500;
-  opacity: 0.8;
 }
 
 .swiperServiceQuote,
@@ -512,6 +443,12 @@ button {
   opacity: 0.8;
 }
 
+/*
+
+    CATEGORY PAGE STRUCTURE
+
+*/
+
 .categoryServiceRatingDiv {
   display: flex;
   justify-content: flex-start;
@@ -531,6 +468,12 @@ button {
 .categoryServiceStarReviews {
   margin-left: 1rem;
 }
+
+/*
+
+    EXPLORE PAGE STRUCTURE
+
+*/
 
 .exploreCategories {
   display: flex;
@@ -558,6 +501,12 @@ button {
   font-weight: 500;
   text-align: center;
 }
+
+/*
+
+    SERVICE PAGE STRUCTURE
+
+*/
 
 .serviceMapDiv {
   display: flex;
@@ -589,93 +538,6 @@ button {
   display: contents;
 }
 
-.categoryListingPriceSeparator {
-  margin: 0 1rem;
-}
-
-
-.starIcon img{
-  width: 16px;
-  height: 16px;
-  margin: 0.25rem;
-}
-
-
-@media (max-width: 525px) {
-
-  .removeIcon {
-    margin-right: 1.25rem;
-  }
-
-  .editIcon {
-    margin-right: 1.25rem;
-  }
-}
-
-.loadMore {
-  cursor: pointer;
-  width: 8rem;
-  margin: 0 auto;
-  text-align: center;
-  padding: 0.25rem 0.5rem;
-  background-color: #000000;
-  color: #ffffff;
-  font-weight: 600;
-  border-radius: 1rem;
-  opacity: 0.7;
-  margin-top: 2rem;
-}
-
-.loadMoreDiv,
-.categoryLoadMoreDiv {
-  display: flex;
-  justify-content: center;
-}
-
-.listingDetails {
-  margin-bottom: 10rem;
-}
-
-.shareIconDiv {
-  cursor: pointer;
-  position: absolute;
-  top: 4%;
-  right: 1%;
-  z-index: 2;
-  color: #ffffff;
-  background-color: #006eff;
-  border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.listingName {
-  font-weight: 600;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.listingLocation {
-  margin-top: 0;
-  font-weight: 600;
-}
-
-
-.listingLocationTitle {
-  margin-top: 2rem;
-  font-weight: 600;
-  font-size: 1.25rem;
-}
-
-@media (min-width: 1024px) {
-  .leafletContainer {
-    height: 400px;
-  }
-}
-
 .linkCopied {
   position: fixed;
   top: 9%;
@@ -686,6 +548,12 @@ button {
   padding: 0.5rem 1rem;
   font-weight: 600;
 }
+
+/*
+
+    CONTACT PAGE
+
+*/
 
 .contactPageHeader {
   font-size: 2rem;
@@ -730,16 +598,6 @@ button {
   margin-bottom: 0.5rem;
 }
 
-.profile {
-  margin-bottom: 10rem;
-}
-
-.profileHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .logOut {
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
@@ -749,8 +607,14 @@ button {
   background-color: #006eff;
   padding: 0.25rem 0.75rem;
   border-radius: 1rem;
-  margin: 2rem 1rem 0 1rem;
+  margin: 0 1rem;
 }
+
+/*
+
+    PROFILE PAGE
+
+*/
 
 .profileDetailsHeader {
   display: flex;
@@ -813,6 +677,16 @@ button {
 .profileAddressActive {
   background-color: rgba(44, 44, 44, 0.1);
 }
+
+.profile {
+  margin-bottom: 10rem;
+}
+
+/*
+
+    CREATE SERVICE PAGE
+
+*/
 
 .createListing {
   background-color: #ffffff;
@@ -940,6 +814,12 @@ button {
   border-radius: 1rem;
   margin-right: 1rem;
 }
+
+/*
+
+    REVIEW FORM
+
+*/
 
 .reviewFormButtons {
   display: flex;
@@ -1104,6 +984,139 @@ button {
   list-style-type: none;
 }
 
+/*
+
+    ICONS & LINKS
+
+*/
+
+/*
+
+    BUTTONS
+
+*/
+
+.primaryButton,
+.createServiceButton {
+  cursor: pointer;
+  background: #006eff;
+  border-radius: 1rem;
+  padding: 0.85rem 2rem;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.25rem;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reviewActiveButton {
+  cursor: pointer;
+  background: #000000;
+  border-radius: 1rem;
+  padding: 0.85rem 2rem;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.25rem;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signInButton,
+.signUpButton {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  background-color: #006eff;
+  border-radius: 50%;
+}
+
+.createServiceButton {
+  margin-top: 1rem;
+}
+
+.removeIcon {
+  cursor: pointer;
+  position: absolute;
+  top: 3%;
+  right: -2%;
+  margin-right: 2rem;
+
+}
+
+.editIcon {
+  cursor: pointer;
+  position: absolute;
+  top: 3%;
+  right: 20px;
+  margin-right: 2rem;
+}
+
+.starIcon img {
+  width: 16px;
+  height: 16px;
+  margin: 0.25rem;
+}
+
+.loadMore {
+  cursor: pointer;
+  width: 8rem;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0.25rem 0.5rem;
+  background-color: #000000;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 1rem;
+  opacity: 0.7;
+  margin-top: 2rem;
+}
+
+.loadMoreDiv,
+.categoryLoadMoreDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.shareIconDiv {
+  cursor: pointer;
+  position: absolute;
+  top: 4%;
+  right: 1%;
+  z-index: 2;
+  color: #ffffff;
+  background-color: #006eff;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+
+  .input,
+  .passwordInput,
+  .emailInput,
+  .nameInput,
+  .textarea {
+    padding: 0 5rem;
+  }
+
+  .leafletContainer {
+    height: 400px;
+  }
+}
+
 @media (max-width: 525px) {
   .serviceReviewForm {
     width: 90%;
@@ -1117,5 +1130,13 @@ button {
   .reviewTimeInputSmall {
     width: 75px;
     height: 50px;
+  }
+
+  .removeIcon {
+    margin-right: 1.25rem;
+  }
+
+  .editIcon {
+    margin-right: 1.25rem;
   }
 }

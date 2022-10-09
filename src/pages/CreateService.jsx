@@ -244,7 +244,7 @@ function CreateService() {
   return (
     <div className='profile'>
       <header>
-        <p className='pageHeader createServiceHeading'>Create a Service</p>
+        <p className='createServiceHeader'>Create a Service</p>
       </header>
 
       <main>
@@ -529,7 +529,7 @@ function CreateService() {
             accept='.jpg,.png,.jpeg'
             required
           />
-          <button type='submit' className='primaryButton createListingButton'>
+          <button type='submit' className='createServiceButton'>
             Create Service
           </button>
         </form>

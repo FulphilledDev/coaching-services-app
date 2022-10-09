@@ -106,7 +106,7 @@ function Profile() {
   return (
     <div>
       <header className="profileHeader">
-          <p className="pageHeader">My Profile</p>
+          <p className="profileHeading">My Profile</p>
           <button 
             type='button' 
             className="logOut"

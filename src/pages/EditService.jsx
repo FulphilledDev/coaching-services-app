@@ -282,7 +282,7 @@ function EditService() {
   return (
     <div className='profile'>
       <header>
-        <p className='pageHeader editServiceHeading'>Edit a Service</p>
+        <p className='editServiceHeader'>Edit a Service</p>
       </header>
 
       <main>

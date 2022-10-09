@@ -8,11 +8,11 @@ function Explore() {
   return (
     <>
     <div className='Explore'>
-      <header>
-        <p className="pageHeader explorePageHeader">Explore</p>
-      </header>
 
         <main>
+          <header>
+            <p className="exploreHeader">Explore</p>
+          </header>
           <Slider />
 
           <p className="exploreCategoryHeading">Categories</p>
