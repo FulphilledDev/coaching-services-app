@@ -46,6 +46,12 @@ button {
   border-radius: 1rem;
 }
 
+/*
+
+    BUTTONS
+
+*/
+
 .primaryButton {
   cursor: pointer;
   background: #006eff;
@@ -74,6 +80,18 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.signInButton,
+.signUpButton {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  background-color: #006eff;
+  border-radius: 50%;
 }
 
 .removeIcon {
@@ -246,9 +264,6 @@ button {
   align-items: center;
   position: inherit;
 }
-
-.signInButton,
-.signUpButton,
 .signInText,
 .signUpText {
   cursor: pointer;
@@ -258,17 +273,6 @@ button {
 .signUpText {
   font-size: 1.5rem;
   font-weight: 700;
-}
-
-.signInButton,
-.signUpButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3rem;
-  height: 3rem;
-  background-color: #006eff;
-  border-radius: 50%;
 }
 
 
@@ -349,9 +353,11 @@ button {
 .swiperExploreServiceCard,
 .serviceItemCard, 
 .servicePageCard,
-.profileServices {
+
+.servicePageAdditionalDetails {
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   align-items: center;
   margin: 1rem;
   position: relative;
@@ -360,6 +366,13 @@ button {
   height: 175px;
   padding: 0.25rem 0.5rem;
   cursor: pointer;
+}
+
+.servicePageAdditionalDetails {
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  margin-bottom: 6rem;
 }
 
 .profileServices {
@@ -493,6 +506,12 @@ button {
   margin-left: 0;
 }
 
+.servicePageAddress {
+  margin: 0.3rem 0;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
 .categoryServiceRatingDiv {
   display: flex;
   justify-content: flex-start;
@@ -544,16 +563,23 @@ button {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin: 1rem;
   background: #ffffff;
-  width: 100%;
+   width: 100%;
 }
-.serviceListingLocation {
+
+.leafletContainer {
+  width: 100%;
+  height: 300px;
+  overflow-x: hidden;
+}
+
+.servicePageInformation,
+.servicePageLocation,
+.servicePageReviews {
   font-weight: 600;
   font-size: 1.25rem;
   opacity: 0.8;
   margin-bottom: 0;
-  margin-left: 1rem;
 }
 .serviceLocationTitle {
   margin: 1rem;
@@ -561,19 +587,6 @@ button {
 
 .categoryListingLink {
   display: contents;
-}
-
-.categoryListingLocation {
-  font-weight: 400;
-  font-size: 1rem;
-  opacity: 0.8;
-  margin-bottom: 0;
-}
-
-.categoryListingAddress {
-  margin: 0.3rem 1rem;
-  font-weight: 400;
-  opacity: 0.8;
 }
 
 .categoryListingPriceSeparator {
@@ -589,14 +602,6 @@ button {
 
 
 @media (max-width: 525px) {
-
-  .categoryListingLocation {
-    width: 75%;
-  }
-  
-  .categoryListingLocation {
-    font-size: .85rem;
-  }
 
   .removeIcon {
     margin-right: 1.25rem;
@@ -663,12 +668,6 @@ button {
   margin-top: 2rem;
   font-weight: 600;
   font-size: 1.25rem;
-}
-
-.leafletContainer {
-  width: 100%;
-  height: 300px;
-  overflow-x: hidden;
 }
 
 @media (min-width: 1024px) {
