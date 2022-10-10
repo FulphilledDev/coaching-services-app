@@ -1,30 +1,19 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { 
     getDoc, 
     doc,
     updateDoc,
-    addDoc, 
-    collection, 
-    query, 
-    where, 
-    orderBy, 
-    limit , 
-    startAfter,
     serverTimestamp 
 } from 'firebase/firestore'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
 import Spinner from '../components/Spinner'
 import { FaCheck } from 'react-icons/fa'
 import { FaShareAlt } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 import { v4 as uuidv4 } from 'uuid'
-// import { ReactComponent as EditIcon } from '../assets/svg/editIcon.svg'
-// import starIcon from '../assets/svg/starIcon.svg'
-import starHalfIcon from '../assets/svg/starHalfIcon.svg'
-import starFillIcon from '../assets/svg/starFillIcon.svg'
 
 function Service() {
     const [service, setService] = useState(null)
