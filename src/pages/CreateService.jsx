@@ -445,7 +445,7 @@ function CreateService() {
 
           {yearly && (
             <>
-              <label className='formLabel'>Cost</label>
+              <label className='formLabel'>Cost / Year</label>
               <input
                 className='formInputSmall'
                 type='number'
@@ -456,7 +456,6 @@ function CreateService() {
                 max='100000'
                 required={yearly}
               />
-              <p> / Year</p>
             </>
           )}
 
@@ -486,7 +485,7 @@ function CreateService() {
 
           {subscription && (
             <>
-              <label className='formLabel'>Cost</label>
+              <label className='formLabel'>Cost / Month</label>
               <input
                 className='formInputSmall'
                 type='number'
@@ -497,7 +496,6 @@ function CreateService() {
                 max='100000'
                 required={subscription}
               />
-              <p> / Month</p>
             </>
           )}
 
