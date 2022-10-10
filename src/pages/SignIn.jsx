@@ -45,7 +45,7 @@ function SignIn() {
     <>
       <div className="pageContainer">
         <header>
-          <p className="pageHeader">Welcome Back!</p>
+          <p className="signInHeader">Welcome Back!</p>
         </header>
 
         <form onSubmit={onSubmit}>
@@ -58,7 +58,7 @@ function SignIn() {
               onChange={onChange} 
           />
 
-          <div className="passwordInputDiv">
+          <div className='passwordInputDiv'>
             <input 
                 type={showPassword ? 'text' : 'password'} 
                 className='passwordInput' 
@@ -92,13 +92,19 @@ function SignIn() {
             </div>
         </form> 
 
-        <OAuth />
+        <div className="socialLogInBar">
+          <p className='oAuthLogo'>
+          <OAuth />
+          </p>
 
-        <Link 
-          to='/sign-up'
-          className='registerLink'>
-            Sign Up Instead
-        </Link>
+                <p>
+          <Link 
+            to='/sign-up'
+            className='registerLink'>
+              Sign Up Instead
+          </Link>
+          </p>
+        </div>
       </div>
     </>
   )

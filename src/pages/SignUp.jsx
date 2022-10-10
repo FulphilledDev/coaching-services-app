@@ -66,7 +66,7 @@ function SignUp() {
     <>
       <div className="pageContainer">
         <header>
-          <p className="pageHeader">Welcome to Better Coaching Services!</p>
+          <p className="signUpHeader">Welcome to Better Coaching Services!</p>
         </header>
 
         <form onSubmit={onSubmit}>
@@ -87,13 +87,6 @@ function SignUp() {
               value={email} 
               onChange={onChange} 
           />
-          {/* <input  
-              className="phoneInput" 
-              placeholder="Phone Number" 
-              id="phone" 
-              value={phone} 
-              onChange={onChange} 
-          /> */}
 
           <div className="passwordInputDiv">
             <input 

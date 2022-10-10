@@ -97,6 +97,8 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .navbarNav {
@@ -138,37 +140,40 @@ button {
 
 */
 
+
+.passwordInput,
+.emailInput,
 .nameInput {
-  margin-bottom: 2rem;
-  background: url('./assets/svg/badgeIcon.svg') #ffffff 2.5% center no-repeat;
-}
-
-
-.emailInput {
-  margin-bottom: 2rem;
-  background: url('./assets/svg/personIcon.svg') #ffffff 2.5% center no-repeat;
-}
-
-.phoneInput {
-  margin-bottom: 2rem;
-  background: url('./assets/svg/personIcon.svg') #ffffff 2.5% center no-repeat;
+  background-color: #ffffff;
+  border: none;
+  font-weight: 600;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin: 0.5rem 0.5rem 0 0;
+  padding-left: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .passwordInputDiv {
-  position: relative;
+  display: flex;
+  flex-wrap: none;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
-.passwordInput {
-  margin-bottom: 2rem;
-  background: url('./assets/svg/lockIcon.svg') #ffffff 2.5% center no-repeat;
+.passwordInput,
+.emailInput,
+.nameInput {
+  width: 75%;
+  border-radius: 1.5rem;
+  height: 3rem;
 }
 
 .showPassword {
   cursor: pointer;
-  position: absolute;
-  top: -4%;
-  right: 1%;
-  padding: 1rem;
 }
 
 .forgotPasswordLink {
@@ -186,6 +191,42 @@ button {
   align-items: center;
   position: inherit;
 }
+
+.socialLogin{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.registerLink {
+  margin-top: 4rem;
+  color: #006eff;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .socialIconDiv {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem;
+    margin: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .socialIconImg {
+    width: 100%;
+  }
+}
 .signInText,
 .signUpText {
   cursor: pointer;
@@ -195,40 +236,6 @@ button {
 .signUpText {
   font-size: 1.5rem;
   font-weight: 700;
-}
-
-
-.socialLogin {
-  margin-top: 4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.socialIconDiv {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.75rem;
-  margin: 1.5rem;
-  width: 3rem;
-  height: 3rem;
-  background-color: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
-}
-
-.socialIconImg {
-  width: 100%;
-}
-
-.registerLink {
-  margin-top: 4rem;
-  color: #006eff;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 3rem;
 }
 
 /* 
@@ -243,6 +250,8 @@ button {
   align-items: center;
 }
 
+.signInHeader,
+.signUpHeader,
 .categoryHeader, 
 .profileHeader,
 .exploreHeader,
@@ -1104,11 +1113,10 @@ button {
 @media (min-width: 1024px) {
 
   .input,
-  .passwordInput,
-  .emailInput,
-  .nameInput,
   .textarea {
-    padding: 0 5rem;
+    padding: 1rem 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
   }
 
   .leafletContainer {

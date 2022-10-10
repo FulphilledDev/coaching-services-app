@@ -206,6 +206,7 @@ function Service() {
         })
 
         setLoading(false)
+        setToggle('closed')
         toast.success('Rating saved')
         navigate(`/category/${serviceRef.category}/${serviceRef.id}`)
 
