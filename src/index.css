@@ -427,6 +427,18 @@ button {
   height: 1.5rem;
 }
 
+.reviewTypeDiv {
+  display: flex;
+  flex-wrap: none;
+  justify-content: flex-start;
+  width: 90%;
+}
+
+.reviewCoachingType,
+.reviewPriceType {
+  margin: 1.25rem .5rem;
+}
+
 .servicePageSavingsPrice, 
 .servicePageType,
 .swiperServiceType {
@@ -1176,7 +1188,7 @@ button {
     margin: 0 auto;
   }
 
-  .reviewHeaderDiv {
+  .reviewTypeDiv {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -1191,13 +1203,6 @@ button {
     margin-top: 0;
   }
 
-  .reviewTypeDiv {
-    display: flex;
-    flex-wrap: none;
-    justify-content: center;
-    width: 90%;
-  }
-
   .reviewCoachingType,
   .reviewPriceType {
     margin: 0.25rem .5rem;
@@ -1210,6 +1215,7 @@ button {
   .ratingDiv,
   .reviewMessage {
     margin-left: 1rem;
+    margin-right: 1rem;
   }
   
 
@@ -1231,5 +1237,10 @@ button {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+  }
+
+  .textarea {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
   }
 }
