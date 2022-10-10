@@ -288,7 +288,7 @@ function EditService() {
       <main>
         <form onSubmit={onSubmit}>
           <label className='formLabel'>Category</label>
-          <div className='formButtons'>
+          <div className='formButtons editFormButtons'>
             <button
               type='button'
               className={ category === 'mental-performance' ? 'formButtonActive' : 'formButton'}
@@ -481,7 +481,7 @@ function EditService() {
 
           {yearly && (
             <>
-              <label className='formLabel'>Cost</label>
+              <label className='formLabel'>Cost / Year</label>
               <input
                 className='formInputCost'
                 type='number'
@@ -492,7 +492,6 @@ function EditService() {
                 max='100000'
                 required={yearly}
               />
-              <> / Year</>
             </>
           )}
 
@@ -522,7 +521,7 @@ function EditService() {
 
           {subscription && (
             <>
-              <label className='formLabel'>Cost</label>
+              <label className='formLabel'>Cost / Month</label>
               <input
                 className='formInputCost'
                 type='number'
@@ -533,7 +532,6 @@ function EditService() {
                 max='100000'
                 required={subscription}
               />
-              <span> / Month</span>
             </>
           )}
 

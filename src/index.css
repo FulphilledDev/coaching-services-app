@@ -284,9 +284,15 @@ button {
   height: 30vw;
 }
 
+.swiper-pagination-bullet {
+  background-color: #006eff !important;
+}
+
 .swiper-pagination-bullet-active {
   background-color: #000000 !important;
 }
+
+
 
 .swiperExploreServiceCard,
 .serviceItemCard, 
@@ -315,6 +321,7 @@ button {
 .profileServices {
   margin-left: 0;
   padding-left: 0;
+  margin-bottom: 7rem;
 }
 
 .serviceItemCard {
@@ -913,17 +920,18 @@ button {
   justify-content: center;
 }
 
-.reviewsDisplay {
-  padding: 0;
+.reviewMainDisplay {
+  width: 100%;
 }
-
 .reviewDisplay {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   margin: 1rem;
+  margin-left: 0;
   position: relative;
-  background: #ffffff;
+  background: #e2e2e2;
   border-radius: 1.5rem;
 }
 
@@ -961,8 +969,8 @@ button {
   font-size: 1.25rem;
   margin-left: 1rem;
   cursor: pointer;
-  color: #f6ff00;
-  background-color: #000000;
+  color: #ffffff;
+  background-color: #006eff;
   border-radius: 50%;
   width: 2rem;
   height: 2rem;
@@ -970,9 +978,6 @@ button {
   justify-content: center;
   align-items: center;
 }
-
-
-
 
 .reviewMessage {
   display: flex;
@@ -983,12 +988,6 @@ button {
   margin-bottom: 1rem;
   list-style-type: none;
 }
-
-/*
-
-    ICONS & LINKS
-
-*/
 
 /*
 
@@ -1117,7 +1116,7 @@ button {
   }
 }
 
-@media (max-width: 525px) {
+@media (max-width: 575px) {
   .serviceReviewForm {
     width: 90%;
   }
@@ -1125,6 +1124,86 @@ button {
   .serviceReviewFormDiv {
     margin: 0 auto;
   }
+
+  .swiperServiceQuote {
+    margin-bottom: 1rem;
+  }
+  
+  .swiperExploreServiceCard,
+  .serviceItemCard,
+  .servicePageCard {
+    height: 325px;
+    justify-content: center;
+  }
+
+  .swiperServiceDetails,
+  .categoryServiceDetails,
+  .servicePageDetails {
+    align-items: center;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .exploreCategories {
+    margin-bottom: 7rem;
+  }
+
+  .categoryServiceImg {
+    margin-right: 0;
+  }
+
+  .categoryServiceStarRatings {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: none;
+  }
+  .categoryServiceStarReviews {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .reviewDetails {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .reviewHeaderDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: .5rem auto
+  }
+
+  .reviewName {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .reviewTypeDiv {
+    display: flex;
+    flex-wrap: none;
+    justify-content: center;
+    width: 90%;
+  }
+
+  .reviewCoachingType,
+  .reviewPriceType {
+    margin: 0.25rem .5rem;
+  }
+
+  .ratingDiv {
+    margin-top: 1rem;
+  }
+
+  .ratingDiv,
+  .reviewMessage {
+    margin-left: 1rem;
+  }
+  
 
   .reviewInputSmall,
   .reviewTimeInputSmall {
@@ -1138,5 +1217,11 @@ button {
 
   .editIcon {
     margin-right: 1.25rem;
+  }
+
+  .editFormButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
 }

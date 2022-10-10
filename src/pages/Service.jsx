@@ -354,21 +354,23 @@ function Service() {
                 {/* service.reviews.map((review)) */}
                 { service.reviews && service.reviews.length > 0 ? (
                     <>
-                    <main>
+                    <main className='reviewMainDisplay'>
                         <p className="servicePageReviews">Reviews</p>
-                        <ul className="reviewsDisplay">
+                        
                             {service.reviews.map((review) => (
                                 <div className='reviewDisplay'>
                                     <div className="reviewDetails">
                                         <div className='reviewHeaderDiv'>
                                             <p className="reviewName">{review.reviewName}
                                             </p>
-                                            <p className='reviewCoachingType'>
-                                                {review.reviewInPersonCoaching ? "In-Person Coaching" : "Online Coaching"}
-                                            </p>
-                                            <p className='reviewPriceType'>
-                                                {review.reviewSubscription ? "Subscription" : "Yearly"}
-                                            </p>
+                                            <div className="reviewTypeDiv">
+                                                <p className='reviewCoachingType'>
+                                                    {review.reviewInPersonCoaching ? "In-Person Coaching" : "Online Coaching"}
+                                                </p>
+                                                <p className='reviewPriceType'>
+                                                    {review.reviewSubscription ? "Subscription" : "Yearly"}
+                                                </p>
+                                            </div>
                                         </div>
                                         <div className="ratingDiv">
                                             <div>
@@ -377,19 +379,15 @@ function Service() {
                                             <div className="reviewRating">
                                                 {review.reviewRating}
                                             </div>
-                                            
                                         </div>
-                                        
                                         <div className='reviewMessage'>
-                                            
                                                 {review.reviewMessage}
-                                            
                                         </div>
                                     </div>
                                 </div>
                                 
                             ))}
-                        </ul>
+                        
                     </main>
 
                 <br />

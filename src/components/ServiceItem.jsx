@@ -40,22 +40,22 @@ function ServiceItem({ service, id, onDelete, onEdit }) {
                 </p>
                 {/* Add conditional for "avgRating" and "numberOfClients" (still need to add to service profile, database, Review form for clients? (Maybe just comment section with option to select stars), etc) */}
                 <div className="categoryServiceRatingDiv">
-                    <div className="">
+                    <div className="categoryServiceStarRatings">
                         {service.minCommit === 0 
-                            ? 'No Ratings Yet' 
-                            : <>
-                                <p className='categoryServiceStarRatings'>
-                                    <img src={starFillIcon} alt="star rating" className='starIcon starIconOne'/>
-                                    <img src={starFillIcon} alt="star rating" className='starIcon'/>
-                                    <img src={starFillIcon} alt="star rating" className='starIcon'/>
-                                    <img src={starHalfIcon} alt="star rating" className='starIcon'/>
-                                    <p className='categoryServiceStarReviews'>
-                                        {service.minCommit > 1 ? `${service.minCommit} Reviews` : '1 Review' } 
-                                    </p>
-                                </p>
-                                 
-                            </>
-                        }
+                            ?  'No Ratings Yet' 
+                            : ( 
+                            <>
+                            <div className='starIcons'>
+                                <img src={starFillIcon} alt="star rating" className='starIcon starIconOne'/>
+                                <img src={starFillIcon} alt="star rating" className='starIcon'/>
+                                <img src={starFillIcon} alt="star rating" className='starIcon'/>
+                                <img src={starHalfIcon} alt="star rating" className='starIcon'/>
+                            </div>
+                            <div className='categoryServiceStarReviews'>
+                                {service.minCommit > 1 ? `${service.minCommit} Reviews` : '1 Review' } 
+                            </div>  
+                            </>    
+                        )}
                     </div>
                 </div>
             </div>
