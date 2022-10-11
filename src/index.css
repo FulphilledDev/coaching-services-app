@@ -343,7 +343,7 @@ button {
 .servicePageImg {
     width: 10rem;
     height: 10rem;
-    border: 3px #006eff;
+    border: 2px solid #006eff;
     border-radius: 50%;
     object-fit: cover;
   }
@@ -415,7 +415,7 @@ button {
 .servicePageSavingsPrice,
 .reviewCoachingType,
 .reviewPriceType {
-  background-color: #6c6c6c;
+  background-color: #006eff;
   color: #ffffff;
   border-radius: 2rem;
   display: flex;
