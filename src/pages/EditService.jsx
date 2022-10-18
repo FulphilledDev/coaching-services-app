@@ -117,7 +117,6 @@ function EditService() {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        //console.log(formData)
 
         setLoading(true)
 
@@ -132,8 +131,6 @@ function EditService() {
         if (yearlyPrice >= (subscriptionPrice*12)) {
           setLoading(false)
           toast.error('Check that yearly price is greater than subscription price per year')
-          console.log(yearlyPrice)
-          console.log(subscriptionPrice)
           return
         }
 

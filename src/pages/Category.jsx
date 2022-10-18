@@ -45,7 +45,6 @@ function Category() {
 
                 querySnap.forEach((doc) => {
                     // This says we successfully have the data...
-                    // console.log(doc.data())
                     return categoryServices.push({
                         id: doc.id,
                         data: doc.data()

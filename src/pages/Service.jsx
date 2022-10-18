@@ -75,7 +75,6 @@ function Service() {
             const docSnap = await getDoc(docRef)
 
             if (docSnap.exists()) {
-                console.log(docSnap.data())
                 setService( docSnap.data())
                 setLoading(false)
             }
@@ -160,7 +159,6 @@ function Service() {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        //console.log(formData)
 
         setLoading(true)
 

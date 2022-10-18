@@ -33,7 +33,6 @@ function Slider() {
 
       setServices(services)
       setLoading(false)
-      console.log(services)
     }
 
     fetchServices()

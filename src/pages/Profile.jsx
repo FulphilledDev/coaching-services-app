@@ -47,7 +47,6 @@ function Profile() {
 
           setServices(services)
           setLoading(false)
-          console.log(services)
       }
 
       fetchUserServices()

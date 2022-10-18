@@ -82,7 +82,6 @@ function CreateService() {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        //console.log(formData)
 
         setLoading(true)
 
