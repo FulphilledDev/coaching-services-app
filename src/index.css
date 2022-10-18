@@ -565,17 +565,6 @@ button {
   display: contents;
 }
 
-.linkCopied {
-  position: fixed;
-  top: 9%;
-  right: 5%;
-  z-index: 2;
-  background-color: #ffffff;
-  border-radius: 1rem;
-  padding: 0.5rem 1rem;
-  font-weight: 600;
-}
-
 /*
 
     CONTACT PAGE
@@ -862,7 +851,11 @@ button {
   margin: 0.5rem .25rem;
 }
 
-.reviewFormButtonActive {
+.reviewFormButtonActive,
+.reviewYearlyButtonActive,
+.reviewSubscriptionButtonActive,
+.reviewInPersonButtonActive,
+.reviewOnlineButtonActive {
   padding: 0.9rem 3rem;
   background-color: #006eff;
   color: #ffffff;
@@ -1119,6 +1112,18 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.linkCopied {
+  position: relative;
+  top: 0%;
+  right: 175%;
+  z-index: 2;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
 }
 
 @media (min-width: 1024px) {
